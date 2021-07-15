@@ -1,0 +1,135 @@
+.button-area {text-align: center;}
+input.logout {width: 15%; position: absolute; right: 10px; }
+input.back {width: 15%; position: absolute; right: 10px; }
+input.search {width: 15%;}
+input.call {width: 15%;  position: absolute; bottom: 10px;}
+input.next {width: 15%;}
+input.storage {width: 15%;}
+input.send {width: 15%;}
+input.notsend {width: 15%;}
+input.upload {width:10%;}
+input.shounin1 {width: 10%;}
+input.torikeshi1 {width: 10%;}
+input.shounin2 {width: 10%;}
+input.torikeshi2 {width: 10%;}
+input.shounin3 {width: 10%;}
+input.torikeshi3 {width: 10%;}
+input.shounin4 {width: 10%;}
+input.torikeshi4 {width: 10%;}
+input.shounin5 {width: 10%;}
+input.torikeshi5 {width: 10%;}
+input.shounin6 {width: 10%;}
+input.torikeshi6 {width: 10%;}
+input.output {width: 15%;}
+input.uketori {width: 15%;}
+input.soufu {width: 15%;}
+input.nyukin {width: 15%;}
+input.historycall {width: 15%;}
+input.tomenu {width: 15%;}
+
+.login {width: 30%; text-align: left; margin-left: auto; margin-right: auto;}
+.loginbutton {margin-left: auto; margin-right: auto;}
+
+.menu {width: 15%; text-align: left; margin-left: auto; margin-right: auto; height:75%;}
+input.keiyaku {width: 100%;}
+input.jujukanri {width: 100%;}
+input.nyukinkanri {width: 100%;}
+input.shuukei {width: 100%;}
+input.sanshou {width: 100%;}
+input.master {width: 100%;}
+
+.keiyakumenu {width: 15%; text-align: center; margin-left: auto; margin-right: auto; height:75%;}
+input.newkeiyaku {width: 100%;}
+input.kakokeiyaku {width: 100%;}
+input.hokan {width: 100%;}
+input.pdfup {width: 100%;}
+input.partner {width: 100%;}
+
+.mastermenu {width: 15%; text-align: center; margin-left: auto; margin-right: auto; height: 75%}
+input.syain {width: 100%;}
+input.torihiki {width: 100%;}
+
+.shorui {width: 80%; text-align: center; margin-left: auto; margin-right: auto; height:75%;}
+
+.mitumorino-area {text-align: center; margin-left: auto; margin-right: auto; height:75%;}
+
+.searchitem {width: 40%; text-align: left; margin-left: auto; margin-right: auto; height:50%; overflow: scroll;}
+.searchresult {text-align: left; margin-left: auto; margin-right: auto; height:35%; overflow: scroll;}
+tr.result:hover { color: white; background-color: gray; }
+tr.result {cursor: hand;}
+
+.reason-area {text-align: center; margin-left: auto; margin-right: auto; margin-bottom:5%;}
+
+.nyukin-area {text-align: center; margin-left: auto; margin-right: auto;}
+
+.pdfhyouji {text-align: center; margin-left: auto; margin-right: auto; height:75%;}
+
+.inputitem-area {width: 90%; text-align: left; margin-left: auto; margin-right: auto; height:75%; overflow:scroll;}
+
+.shuukeihyou {width: 40%; text-align: left; margin-left: auto; margin-right: auto; height:75%;}
+
+.area {
+  width: 1000px;
+  margin: auto;
+  flex-wrap: wrap;
+  display: flex;
+}
+ 
+.tab_class {
+  width: calc(100%/6);
+  height: 50px;
+  background-color: darkgrey;
+  line-height: 50px;
+  font-size: 15px;
+  text-align: center;
+  display: block;
+  float: left;
+  order: -1;
+    margin: 0 0 15px 0;
+}
+ 
+input[name="tab_name"] {
+  display: none;
+}
+ 
+input:checked + .tab_class {
+  background-color: cadetblue;
+  color: aliceblue;
+}
+ 
+.content_class {
+  display: none;
+  width: 100%;
+}
+ 
+input:checked + .tab_class + .content_class {
+  display: block;
+}
+
+.inputitem-area-kensyu{
+    height: 90%
+}
+
+.mbutton-area{
+    text-align: center;
+    padding: 1em;
+    
+}
+
+input.add{width: 10%}
+input.update{width: 10%}
+input.delete{width: 10%}
+
+.hyoji-area{
+    margin: 5% auto 0 auto;
+    overflow: scroll;
+}
+
+.inputitem-area-mas{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 6%;
+    height: 60%;
+}
+
+

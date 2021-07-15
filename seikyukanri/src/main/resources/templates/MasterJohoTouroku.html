@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+	
+    <h1 th:text="${title}" style="text-align: center"></h1>
+    <div th:if="${para == syain}"style="text-align: center" class="inputitem-area-mas" id="syaintou">
+        <label for="name">社員名　</label>
+        <input type="text" id="name"><br>
+        <label for="yakusyoku">役職　　</label>
+        <input type="text" id="yakusyoku"><br>
+        <label for="s-busyo">所属部署</label>
+        <input type="text" id="s-busyo"><br>
+        <label for="keitai">雇用形態</label>
+        <input type="text" id="keitai"><br>
+    </div>
+    
+    <div th:if="${para == torihiki}" style="text-align: center" class="inputitem-area-mas" id="torihikitou">
+        <label for="kaisyaname">会社名　　　</label>
+        <input type="text" id="kaisyaname"><br>
+        <label for="toricode">取引先コード</label>
+        <input type="text" id="toricode">
+    </div>
+    
+    <div class="button-area">
+        <input type="button" class="next" th:onclick="next()" value="登録">
+        <input type="button" class="back" th:onclick="history.back()" value="戻る">
+    </div>
+    
+    <script type="text/javascript" th:inline="javascript">
+        /*<![CDATA[*/
+        function next(){
+        	var result = confirm("登録しますか？");
+            if(paramItem[1] == 'syain'){
+                if(result == true){
+                    window.location.href = './MasterJoho?para=syain';
+                } return false;
+            }
+            if(paramItem[1] == 'torihiki'){
+                if(result == true){
+                    window.location.href = './MasterJoho?para=torihiki';
+                } return false;
+            }
+        }
+        
+        var url = '';
+        var paratype = '';
+        var urlParam = location.search.substring(1);
+        if(urlParam) {
+            var param = urlParam.split('&');
+
+            var arrPara = [];
+
+            for (i = 0; i < param.length; i++) {
+                var paramItem = param[i].split('=');
+                if (paramItem[0] == 'para') {
+                    if(paramItem[1] == 'syain'){
+                        document.getElementById("torihikitou").style.display = "none";
+                    }
+                }
+            }
+        }
+        
+        var url = '';
+        var paratype = '';
+        var urlParam = location.search.substring(1);
+        if(urlParam) {
+            var param = urlParam.split('&');
+
+            var arrPara = [];
+
+            for (i = 0; i < param.length; i++) {
+                var paramItem = param[i].split('=');
+                if (paramItem[0] == 'para') {
+                    if(paramItem[1] == 'torihiki'){
+                        document.getElementById("syaintou").style.display = "none";
+                    }
+                }
+            }
+        }
+        /*]]>*/
+        </script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>契約検索</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<script type="text/javascript">
+	function closeWin() {
+	    open('about:blank', '_self').close();
+	}
+	function add() {
+		var textbox_element = document.getElementById('memberlist');
+		textbox_element.insertAdjacentHTML('beforeend','<input type="text" id="member"><br>');
+	}
+	</script>
+	<h1 style="text-align: center;" >契約検索</h1>
+	<form>
+		<div class="searchitem">
+			<label for="gyomuname">業務名　　</label>
+			<input type="text" id="gyomuname"><br>
+			<label for="kaihatuno">開発番号　</label>
+			<input type="text" id="kaihatuno"><br>
+			<label for="gyomuno">業務番号　</label>
+			<input type="text" id="gyomuno"><br>
+			<label for="sagyoukeitai">作業形態　</label>
+			<input type="text" id="sagyoukeitai"><br>
+			<label for="sagyoukeitai">作業内容　</label>
+			<input type="text" id="sagyoukeitai"><br>
+			<label for="kikankaisi">作業期間　</label>
+			<input type="text" id="kikankaisi">
+			<label for="kikanshuryo">～</label>
+			<input type="text" id="kikanshuryo"><br>
+			<label for="kousu">作業工数　</label>
+			<input type="text" id="kousu"><br>
+			<label for="nounyu">納入日　　</label>
+			<input type="text" id="nounyu"><br>
+			<label for="nouhin">納品物　　</label>
+			<input type="text" id="nouhin"><br>
+			<label for="sekininsha">作業責任者</label>
+			<input type="text" id="sekininsha"><br>
+			<label for="sagyoarea">作業場所　</label><br>
+			<textarea id="sagyoarea"  cols="65" rows="5"></textarea><br>
+			<label for="kingaku">見積金額　</label>
+			<input type="text" id="kingaku"><br>
+			<label for="member">要員</label>
+			<p id="memberlist">
+				<input type="text" id="member"><br>
+			</p>
+			<input type="button" class="" value="追加" onclick="add();">
+		</div>
+		<div class="searchresult">
+			<table class="keiyaku" id="tableresult" border="1" width="100%" >
+				<tr>
+					<th>業務名</th>
+					<th>開発番号</th>
+					<th>業務番号</th>
+					<th>作業形態</th>
+					<th>作業内容</th>
+					<th>作業期間</th>
+					<th>作業工数　</th>
+					<th>納入日</th>
+					<th>納品物</th>
+					<th>作業責任者　</th>
+					<th>作業場所</th>
+					<th>見積金額</th>
+					<th>要員</th>
+				</tr>
+				<tr onclick="closeWin()" class="result">
+					<td>サンプル業務</td>
+					<td>000000000</td>
+					<td>123456789</td>
+					<td>準委任契約</td>
+					<td>サンプル作業内容</td>
+					<td>2021/05/01～2021/08/31</td>
+					<td>3人月</td>
+					<td>サンプル納入日</td>
+					<td>サンプル納品物</td>
+					<td>木ノ下雅斗</td>
+					<td>サンプル作業場所</td>
+					<td>500000円</td>
+					<td>木ノ下雅斗,サンプル要員１,サンプル要員２</td>
+				</tr>
+				<tr onclick="closeWin()" class="result">
+					<td>サンプル業務</td>
+					<td>000000000</td>
+					<td>123456789</td>
+					<td>準委任契約</td>
+					<td>サンプル作業内容</td>
+					<td>2021/05/01～2021/08/31</td>
+					<td>3人月</td>
+					<td>サンプル納入日</td>
+					<td>サンプル納品物</td>
+					<td>木ノ下雅斗</td>
+					<td>サンプル作業場所</td>
+					<td>500000円</td>
+					<td>木ノ下雅斗,サンプル要員１,サンプル要員２</td>
+				</tr>
+				<tr onclick="closeWin()" class="result">
+					<td>サンプル業務</td>
+					<td>000000000</td>
+					<td>123456789</td>
+					<td>準委任契約</td>
+					<td>サンプル作業内容</td>
+					<td>2021/05/01～2021/08/31</td>
+					<td>3人月</td>
+					<td>サンプル納入日</td>
+					<td>サンプル納品物</td>
+					<td>木ノ下雅斗</td>
+					<td>サンプル作業場所</td>
+					<td>500000円</td>
+					<td>木ノ下雅斗,サンプル要員１,サンプル要員２</td>
+				</tr>
+				<tr onclick="closeWin()" class="result">
+					<td>サンプル業務</td>
+					<td>000000000</td>
+					<td>123456789</td>
+					<td>準委任契約</td>
+					<td>サンプル作業内容</td>
+					<td>2021/05/01～2021/08/31</td>
+					<td>3人月</td>
+					<td>サンプル納入日</td>
+					<td>サンプル納品物</td>
+					<td>木ノ下雅斗</td>
+					<td>サンプル作業場所</td>
+					<td>500000円</td>
+					<td>木ノ下雅斗,サンプル要員１,サンプル要員２</td>
+				</tr>
+				<tr onclick="closeWin()" class="result">
+					<td>サンプル業務</td>
+					<td>000000000</td>
+					<td>123456789</td>
+					<td>準委任契約</td>
+					<td>サンプル作業内容</td>
+					<td>2021/05/01～2021/08/31</td>
+					<td>3人月</td>
+					<td>サンプル納入日</td>
+					<td>サンプル納品物</td>
+					<td>木ノ下雅斗</td>
+					<td>サンプル作業場所</td>
+					<td>500000円</td>
+					<td>木ノ下雅斗,サンプル要員１,サンプル要員２</td>
+				</tr>
+			</table>
+			<script>
+				document.getElementById("tableresult").style.display = "none";
+
+				function change() {
+					if (document.getElementById("tableresult")) {
+						document.getElementById("tableresult").style.display = "";
+					}
+				}
+			</script>
+		</div>
+		<div  class="button-area">
+			<input type="button" class="search" onclick="change();" value="検索">
+		</div>
+	</form>
+</body>
+</html>

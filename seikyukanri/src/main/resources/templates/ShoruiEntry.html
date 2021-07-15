@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<form method="get" action="../datareceive.html" onSubmit="return checkSubmit()">
+    <h1 style="text-align: center;" th:text="${title}"></h1>
+    <div style="text-align: center;">見積No：00000000</div>
+    <div class="area" id="area">
+        <input type="radio" name="tab_name" id="tab1" checked>			
+        <label class="tab_class" for="tab1" id="tab1-label">見積書</label>	
+        <div class="content_class">
+            <div class="inputitem-area" id="inputitem-area-mitumori">
+                <!--見積書HTML-->
+                <label for="bushoselect1">部署選択　</label>
+                <select id="bushoselect1" name="bushoselect1"> 
+                    <option value="Blank"></option>
+                    <option value="1g">損害保険事業部１Ｇ</option>
+                    <option value="2g">損害保険事業部２Ｇ</option>
+                    <option value="sol">ソリューション事業部</option>
+                    <option value="pac">パッケージ企画販売事業部</option>
+                    <option value="Sal	">営業統括本部</option>
+                    <option value="kin">金融事業部</option>
+                </select><br>
+                <label for="atesaki">宛先　　　</label>
+                <select id="atesaki" name="atesaki"> 
+                    <option value="Blank"></option>
+                    <option value="1c">SAMPO</option>
+                    <option value="2c">STS</option>
+                </select><br>
+                <label for="mitumoridate">見積日　　</label>
+                <input type="text" id="mitumoridate"><br>
+                <label for="gyomuname">業務名　　</label>
+                <input type="text" id="gyomuname"><br>
+                <label for="kaihatuno">開発番号　</label>
+                <input type="text" id="kaihatuno"><br>
+                <label for="gyomuno">業務番号　</label>
+                <input type="text" id="gyomuno"><br>
+                <label for="sagyoukeitai">作業形態　</label>
+                <select id="sagyoukeitai" name="sagyoukeitai">
+                    <option value="Blank"></option>
+                    <option value="juninin">準委任契約</option>
+                    <option value="haken">派遣契約</option>
+                    <option value="ukeoi">請負契約</option>
+                </select><br>
+                
+                <label for="sagyounaiyou">作業内容　</label>
+                <input type="text" id="sagyounaiyou"><br>
+                <label for="kikankaisi">作業期間　</label>
+                <input type="text" id="kikankaisi">
+                <label for="kikanshuryo">～</label>
+                <input type="text" id="kikanshuryo"><br>
+                <label for="totalkousu">作業工数　</label>
+                <input type="text" id="totalkousu">人月<br>
+                <label for="nounyu">納入日　　</label>
+                <input type="text" id="nounyu"><br>
+                <label for="nouhin">納品物　　</label>
+                <input type="text" id="nouhin"><br>
+                <label for="sekininsha">作業責任者</label>
+                <input type="text" id="sekininsha"><br>
+                <label for="skill">作業必要業務スキル</label><br>
+                <textarea id="skill" cols="80" rows="5"></textarea><br>
+                <label for="sagyoarea">作業場所　</label><br>
+                <textarea id="sagyoarea" cols="80" rows="5"></textarea><br>
+                <label for="kingaku">合計見積金額　</label>
+                <input type="text" id="kingaku" readonly>円<br>
+                <label for="meisaiupload" id="labeltenpu">見積明細を添付</label>
+                <input type="file" name="meisaiupload" id="tenpu">
+                <label for="meisaiupload" id="labeltenpu-d">見積明細をダウンロード</label>
+                <input type="button" name="meisaiupload" id="tenpu-d" value="ダウンロード">
+                <div class="kingaku-area" style="background-color: lightgray" id="kingaku-area">
+                    <label for="uchiwake">内訳　　　</label><br>
+                    <div id="uchiwake1">
+                        <label for="bushoselect2">部署選択</label>
+                        
+                        <select id="bushoselect2" name="bushoselect2">
+                            <option value="Blank"></option>
+                            <option value="1g">損害保険事業部１Ｇ</option>
+                            <option value="2g">損害保険事業部２Ｇ</option>
+                            <option value="sol">ソリューション事業部</option>
+                            <option value="pac">パッケージ企画販売事業部</option>
+                            <option value="Sal	">営業統括本部</option>
+                            <option value="kin">金融事業部</option>
+                        </select>
+                        
+                        <label for="name">氏名</label>
+                        <input type="text" id="name">
+                        <label for="tanka">基本単価</label>
+                        <input type="text" id="tanka">円<br>
+                        <label for="kikankaisi2">作業期間</label>
+                        <input type="text" id="kikankaisi2">
+                        <label for="kikanshuryo2">～</label>
+                        <input type="text" id="kikanshuryo2">
+                        <label for="kousu">工数</label>
+                        <input type="text" id="kousu">人月<br>
+                        <input type="radio" name="radio-zougengaku" value="time" onclick="time()" checked="checked">時間
+                        <input type="radio" name="radio-zougengaku" value="kotei" onclick="kotei()">固定
+                        <label for="time1">時間幅</label>
+                        <input type="text" id="time1">
+                        <label for="time2">～</label>
+                        <input type="text" id="time2">
+                        <label for="zougaku">増額単価</label>
+                        <input type="text" id="zougaku">円
+                        <label for="gengaku">減額単価</label>
+                        <input type="text" id="gengaku">円<br>
+                        <label for="tokkijiko">特記事項</label><br>
+                        <textarea id="tokkijiko" cols="80" rows="5"></textarea><br>
+                    </div>
+                </div>
+                <input type="button" class="add" id="add" value="追加" onclick="addrecord()"><br>
+                <label for="bikou">備考</label><br>
+                <textarea id="bikou" cols="80" rows="5"></textarea><br>
+                </div>
+        </div>
+        <input type="radio" name="tab_name" id="tab2" > 
+        <label class="tab_class" for="tab2" id="tab2-label">注文書</label>				
+        <div class="content_class">		
+            <!--注文書HTML-->
+                <div class="inputitem-area" id="inputitem-area-chuumon">
+                        <label for="atesaki-chuumon">宛先　　　　　　</label>
+                        <input type="text" id="atesaki-chuumon" value="株式会社キーバインド"><br>
+                        <label for="ankencd">基本契約書Ｎｏ　</label>
+                        <input type="text" id="ankencd"><br>
+                        <label for="shinchokuno">契約進捗管理番号</label>
+                        <input type="text" id="shinchokuno"><br>
+                        <label for="gyomuname-chuumon">件名　　　　　　</label>
+                        <input type="text" id="gyomuname-chuumon" value="初期値は見積書情報"><br>
+                        <label for="sagyoukeitai-chuumon">作業の内容概要　</label>
+                        <input type="text" id="sagyoukeitai-chuumon" value="初期値は見積書情報"><br>
+                        <label for="kingaku-chuumon">注文金額　　　　</label>
+                        <input type="text" id="kingaku-chuumon" value="初期値は見積書情報"><br>
+                        <label for="seikyu">請求と支払方法　</label>
+                        <input type="text" id="seikyu" value="初期値は見積書情報"><br>
+                        <label for="kikankaisi-chuumon">作業期間　　　　</label>
+                        <input type="text" id="kikankaisi-chuumon" value="初期値は見積書情報">
+                        <label for="kikanshuryo-chuumon">～</label>
+                        <input type="text" id="kikanshuryo-chuumon" value="初期値は見積書情報"><br>
+                        <label for="nouhin-chuumon">納品物　　　　　</label>
+                        <input type="text" id="nouhin-chuumon" value="初期値は見積書情報"><br>
+                        <label for="sagyoarea-chuumon">作業場所</label><br>
+                        <textarea id="sagyoarea-chuumon"  cols="80" rows="5">初期値は見積書情報</textarea><br>
+                        <label for="nounyuukijitu">納入期日　　　　</label>
+                        <input type="text" id="nounyuukijitu"><br>
+                        <label for="kenshuukijitu">検収期日　　　　</label>
+                        <input type="text" id="kenshuukijitu"><br>
+                        <label for="nounyuuarea">納入場所　　　　</label>
+                        <input type="text" id="nounyuuarea"><br>
+                        <label for="sonota">その他</label><br>
+                        <textarea id="sonota"  cols="80" rows="5"></textarea><br>
+                </div>
+        </div>
+        
+        <input type="radio" name="tab_name" id="tab3" >
+        <label class="tab_class" for="tab3" id="tab3-label">注文請書</label>				
+        <div class="content_class">
+            <!--注文請書HTML-->
+                <div class="inputitem-area" id="inputitem-area-chuumonuke">
+                    <label for="atesaki-chuumonuke">宛先　　　　　　</label>
+                    <input type="text" id="atesaki-chuumonuke" value="SOMPOシステムズ株式会社"><br>
+                        <label for="ankencd-chuumonuke">基本契約書Ｎｏ　</label>
+                        <input type="text" id="ankencd-chuumonuke" value="初期値は注文書情報"><br>
+                        <label for="shinchokuno-chuumonuke">契約進捗管理番号</label>
+                        <input type="text" id="shinchokuno-chuumonuke" value="初期値は注文書情報"><br>
+                        <label for="gyomuname-chuumonuke">件名　　　　　　</label>
+                        <input type="text" id="gyomuname-chuumonuke" value="初期値は注文書情報"><br>
+                        <label for="sagyoukeitai-chuumonuke">作業の内容概要　</label>
+                        <input type="text" id="sagyounaiyou-chuumonuke" value="初期値は注文書情報"><br>
+                        <label for="kingaku-chuumonuke">注文金額　　　　</label>
+                        <input type="text" id="kingaku-chuumonuke" value="初期値は注文書情報"><br>
+                        <label for="seikyu-chuumonuke">請求と支払方法　</label>
+                        <input type="text" id="seikyu-chuumonuke" value="初期値は注文書情報"><br>
+                        <label for="kikankaisi-chuumonuke">作業期間　　　　</label>
+                        <input type="text" id="kikankaisi-chuumonuke" value="初期値は注文書情報">
+                        <label for="kikanshuryo-chuumonuke">～</label>
+                        <input type="text" id="kikanshuryo-chuumonuke" value="初期値は注文書情報"><br>
+                        <label for="nouhin-chuumonuke">納品物　　　　　</label>
+                        <input type="text" id="nouhin-chuumonuke" value="初期値は注文書情報"><br>
+                        <label for="sagyoarea-chuumonuke">作業場所</label><br>
+                        <textarea id="sagyoarea-chuumonuke"  cols="80" rows="5">初期値は注文書情報</textarea><br>
+                        <label for="nounyuukijitu-chuumonuke">納入期日　　　　</label>
+                        <input type="text" id="nounyuukijitu-chuumonuke" value="初期値は注文書情報"><br>
+                        <label for="kenshuukijitu-chuumonuke">検収期日　　　　</label>
+                        <input type="text" id="kenshuukijitu-chuumonuke" value="初期値は注文書情報"><br>
+                        <label for="nounyuuarea-chuumonuke">納入場所　　　　</label>
+                        <input type="text" id="nounyuuarea-chuumonuke" value="初期値は注文書情報"><br>
+                        <label for="sonota-chuumonuke">その他</label><br>
+                        <textarea id="sonota-chuumonuke"  cols="80" rows="5">初期値は注文書情報</textarea><br>
+                </div>
+            
+        </div>
+        
+        <input type="radio" name="tab_name" id="tab4" >
+        <label class="tab_class" for="tab4" id="tab4-label">検収依頼書</label>		<!--検収依頼書HTML-->				
+        <div class="content_class">
+                <div class="inputitem-area-kensyu" id="inputitem-area-kenshuirai">
+                    <label for="atesaki-kenshuirai">宛先　　　　　　　</label>
+                    <input type="text" id="atesaki-kenshuirai" value="SOMPOシステムズ株式会社"><br>
+                    <label for="gyomuname-kenshuirai">件名　　　　　　　</label>
+                    <input type="text" id="gyomuname-kenshuirai" value="初期値は見積書情報"><br>
+                    <label for="bikou-kenshuirai">備考</label><br>
+                    <textarea id="bikou-kenshuirai" cols="80" rows="5"></textarea><br>
+                </div>
+            
+        </div>
+
+
+        <input type="radio" name="tab_name" id="tab5" >
+        <label class="tab_class" for="tab5" id="tab5-label">請求書</label>		<!--請求書HTML-->				
+        <div class="content_class">
+                <div class="inputitem-area" id="inputitem-area-seikyu">
+                    
+		<p id='seikyuNo'>請求No：XXXXXXXXX</p>
+         
+        <div id="seikyu-twin">
+		<label for="seikyubango_label">請求番号　　　　</label>
+		<input type="text" id="seikyubango_label" value="1234567890"><br>
+        </div>
+                <label for="atesaki-seikyu">宛先　　　　　　</label>
+                <input type="text" id="atesaki-seikyu" value="SOMPOシステムズ株式会社"><br>
+                    <label for="seikyuugaku1">御請求合計金額　</label>
+                    <input type="text" id="seikyuugaku1" value="3000000" readonly>円(税込)
+                    <input type="text" id="seikyuugaku2" value="3000000" readonly>円(税抜)<br>
+                    <label for="gyomuname-seikyu">依頼作業名　　　</label>
+                    <input type="text" id="gyomuname-seikyu" value="初期値は見積書情報"><br>
+                    <div id="date-twin">
+                    <label for="date">請求日　　　　　</label>
+                    <input type="text" id="date"><br>
+                    </div>
+                    <label for="kinmuupload" id="labeltenpu-seikyu">勤務表を添付　　</label>
+                    <input type="file" name="kinmuupload" id="tenpu-seikyu">
+                    <span id='pdf'>
+                        <label for="meisaiupload" id="labeltenpu-d-seikyu">勤務表をダウンロード</label>
+                        <input type="button" name="meisaiupload" id="tenpu-d-seikyu" value="ダウンロード"><br>
+                        <input type="button" onclick="openMitumori()" value="見積書PDF表示">
+                        <input type="button" onclick="openChuumon()" value="注文書PDF表示">
+                    </span>
+                    <div class="uchiwake-area" id="uchiwake-area" style="background-color: lightgray">
+                        <label for="uchiwake">内訳　　　</label>
+                        <div id="uchiwake1-seikyu">
+                            	<label for="name-seikyu">氏名</label>
+                                <input type="text" id="name-seikyu" value="木ノ下雅斗">
+                                <label for="tanka-seikyu">基本単価</label>
+                                <input type="text" id="tanka-seikyu" value="500000">円
+                                <label for="kousu-seikyu">　工数</label>
+                                <input type="text" id="kousu-seikyu" value="1">人月
+                                <input type="radio" name="radio-zougengaku" value="time" checked="checked">増額
+                                <input type="radio" name="radio-zougengaku" value="kotei">減額
+                                <input type="text" id="zangyou-seikyu" value="10">時間
+                                <label for="seikyuu-seikyu">請求額</label>
+                                <input type="text" id="seikyuu-seikyu" value="500000">円<br>
+                                <label for="tokkijiko-seikyu">特記事項</label><br>
+                                <textarea id="tokkijiko-seikyu"  cols="80" rows="5"></textarea><br>
+                        </div>
+                    </div>
+                    <input type="button" class="adduchiwake" id="adduchiwake" value="追加" onclick="adduchiwakerecord()"><br>
+                    <div class="koutuu-area" id="koutuu-area" style="background-color: lightgray">
+                        <p>その他</p>
+                        <div id="koutuu1">
+                            <label for="name-seikyu-koutuu">氏名</label>
+                            <input type="text" id="name-seikyu-koutuu" value="木ノ下雅斗">
+                            <label for="koutuuhi">金額</label>
+                            <input type="text" id="koutuuhi" value="2000">円<br>
+                            <label for="tokkijiko-seikyu-koutuu">特記事項</label><br>
+                            <textarea id="tokkijiko-seikyu-koutuu"  cols="80" rows="5"></textarea><br>
+                        </div>
+                    </div>
+                    <input type="button" class="addkoutuu" id="addkoutuu" value="追加" onclick="addkoutuurecord()"><br>
+                    <label for="bikou">備考</label><br>
+                    <textarea id="bikou-seikyu"  cols="80" rows="5"></textarea><br>
+                </div>
+        </div>
+        <input type="radio" name="tab_name" id="tab6" >
+        <label class="tab_class" for="tab6" id="tab6-label">覚書</label>		<!--覚書HTML-->				
+        <div class="content_class">
+            
+		<div class="inputitem-area" id="inputitem-area-oboegaki">
+			<label for="bushoselect1-oboegaki">部署選択　</label>
+			<select id="bushoselect1-oboegaki" name="bushoselect1">
+				<option value="Blank"></option>
+				<option value="1g">損害保険事業部１Ｇ</option>
+				<option value="2g">損害保険事業部２Ｇ</option>
+				<option value="sol">ソリューション事業部</option>
+				<option value="pac">パッケージ企画販売事業部</option>
+				<option value="Sal	">営業統括本部</option>
+				<option value="kin">金融事業部</option>
+			</select><br>
+			<label for="atesaki-oboegaki">宛先　　　</label>
+			<input type="text" id="atesaki-oboegaki"><br>
+			<label for="mitumoridate-oboegaki">見積日　　</label>
+			<input type="text" id="mitumoridate-oboegaki"><br>
+			<label for="gyomuname-oboegaki">業務名　　</label>
+			<input type="text" id="gyomuname-oboegaki"><br>
+			<label for="kaihatuno-oboegaki">開発番号　</label>
+			<input type="text" id="kaihatuno-oboegaki"><br>
+			<label for="gyomuno-oboegaki">業務番号　</label>
+			<input type="text" id="gyomuno-oboegaki"><br>
+			<label for="sagyoukeitai-oboegaki">作業形態　</label>
+			<input type="text" id="sagyoukeitai-oboegaki"><br>
+			<label for="sagyounaiyou-oboegaki">作業内容　</label>
+			<input type="text" id="sagyounaiyou-oboegaki"><br>
+			<label for="kikankaisi-oboegaki">作業期間　</label>
+			<input type="text" id="kikankaisi-oboegaki">
+			<label for="kikanshuryo-oboegaki">～</label>
+			<input type="text" id="kikanshuryo-oboegaki"><br>
+			<label for="totalkousu-oboegaki">作業工数　</label>
+			<input type="text" id="totalkousu-oboegaki">人月<br>
+			<label for="nounyu-oboegaki">納入日　　</label>
+			<input type="text" id="nounyu-oboegaki"><br>
+			<label for="nouhin-oboegaki">納品物　　</label>
+			<input type="text" id="nouhin-oboegaki"><br>
+			<label for="sekininsha-oboegaki">作業責任者</label>
+			<input type="text" id="sekininsha-oboegaki"><br>
+			<label for="skill-oboegaki">作業必要業務スキル</label><br>
+			<textarea id="skill-oboegaki" cols="80" rows="5"></textarea><br>
+			<label for="sagyoarea-oboegaki">作業場所　</label><br>
+			<textarea id="sagyoarea-oboegaki" cols="80" rows="5"></textarea><br>
+			<label for="kingaku-oboegaki">合計見積金額　</label>
+			<input type="text" id="kingaku-oboegaki" readonly>円<br>
+			<label for="meisaiupload-oboegaki" id="labeltenpu-oboegaki">見積明細を添付</label>
+			<input type="file" name="meisaiupload" id="tenpu-oboegaki">
+			<label for="meisaiupload-oboegaki" id="labeltenpu-d-oboegaki">見積明細をダウンロード</label>
+			<input type="button" name="meisaiupload" id="tenpu-d-oboegaki" value="ダウンロード">
+			<div class="kingaku-area" style="background-color: lightgray" id="kingaku-area-oboegaki">
+				<label for="uchiwake1-oboegaki">内訳　　　</label><br>
+				<div id="uchiwake1-oboegaki">
+					<label for="bushoselect2-oboegaki">部署選択　</label>
+					<select id="bushoselect2-oboegaki" name="bushoselect2">
+						<option value="Blank"></option>
+						<option value="1g">損害保険事業部１Ｇ</option>
+						<option value="2g">損害保険事業部２Ｇ</option>
+						<option value="sol">ソリューション事業部</option>
+						<option value="pac">パッケージ企画販売事業部</option>
+						<option value="Sal	">営業統括本部</option>
+						<option value="kin">金融事業部</option>
+					</select>
+					<label for="name-oboegaki">氏名</label>
+					<input type="text" id="name-oboegaki">
+					<label for="tanka-oboegaki">基本単価</label>
+					<input type="text" id="tanka-oboegaki">円
+					<label for="kousu-oboegaki">　工数</label>
+					<input type="text" id="kousu-oboegaki">人月<br>
+					<input type="radio" name="radio-zougengaku" value="time" onclick="time()" checked="checked">時間
+					<input type="radio" name="radio-zougengaku" value="kotei" onclick="kotei()">固定
+					<label for="time1-oboegaki">時間幅</label>
+					<input type="text" id="time1-oboegaki">
+					<label for="time2-oboegaki">～</label>
+					<input type="text" id="time2-oboegaki">
+					<label for="zougaku-oboegaki">増額単価</label>
+					<input type="text" id="zougaku-oboegaki">円
+					<label for="gengaku-oboegaki">減額単価</label>
+					<input type="text" id="gengaku-oboegaki">円<br>
+					<label for="tokkijiko-oboegaki">特記事項</label><br>
+					<textarea id="tokkijiko-oboegaki" cols="80" rows="5"></textarea><br>
+				</div>
+			</div>
+			<input type="button" class="add" id="add-oboegaki" value="追加" onclick="addrecord()"><br>
+			<label for="bikou-oboegaki">備考</label><br>
+			<textarea id="bikou-oboegaki" cols="80" rows="5"></textarea><br>
+			<label for="ankencd-oboegaki">基本契約書Ｎｏ　</label>
+			<input type="text" id="ankencd-oboegaki"><br>
+			<label for="shinchokuno-oboegaki">契約進捗管理番号</label>
+			<input type="text" id="shinchokuno-oboegaki"><br>
+			<label for="nounyuukijitu-oboegaki">納入期日　　　　</label>
+			<input type="text" id="nounyuukijitu-oboegaki"><br>
+			<label for="kenshuukijitu-oboegaki">検収期日　　　　</label>
+			<input type="text" id="kenshuukijitu-oboegaki"><br>
+			<label for="nounyuuarea-oboegaki">納入場所　　　　</label>
+			<input type="text" id="nounyuuarea-oboegaki"><br>
+			<label for="sonota-oboegaki">その他</label><br>
+			<textarea id="sonota-oboegaki"  cols="80" rows="5"></textarea><br>
+		</div>
+	</div>
+</div>
+			<!--ボタンHTML-->
+	<div class="button-area">			
+		<input type="button" class="historycall" id="historycall" onclick="openWin()" onfocus="gotFocus()" value="過去呼出">
+		<input type="button" class="next" onclick="next()" value="次へ">
+		<input type="button" class="back" onclick="history.back()" value="戻る">
+	</div>
+
+<script type="text/javascript" th:inline="javascript">
+		/*<![CDATA[*/
+		function time() {
+		document.getElementById("time1").disabled = false;
+		document.getElementById("time2").disabled = false;
+		document.getElementById("zougaku").disabled = false;
+		document.getElementById("gengaku").disabled = false;
+	}
+	
+	function kotei() {
+		document.getElementById("time1").disabled = true;
+		document.getElementById("time2").disabled = true;
+		document.getElementById("zougaku").disabled = true;
+		document.getElementById("gengaku").disabled = true;
+	}
+	
+	function addrecord() {
+		var data = document.getElementById("uchiwake1").innerHTML;
+		counttag = ((document.getElementById('kingaku-area').childElementCount - 1) / 2) + 1;
+		document.getElementById("kingaku-area").insertAdjacentHTML('beforeend','<div id="uchiwake' + counttag + '"><br>');
+		document.getElementById("kingaku-area").insertAdjacentHTML('beforeend',data);
+		document.getElementById("kingaku-area").insertAdjacentHTML('beforeend','</div>');
+	}
+	
+	function adduchiwakerecord() {
+		var data = document.getElementById("uchiwake1-seikyu").innerHTML;
+		counttag = (document.getElementById('uchiwake-area').childElementCount);
+		document.getElementById("uchiwake-area").insertAdjacentHTML('beforeend','<div id="uchiwake' + counttag + '">' + data + '</div>');
+	}
+		
+	function addkoutuurecord() {
+		var data = document.getElementById("koutuu1").innerHTML;
+		counttag = (document.getElementById('koutuu-area').childElementCount);
+		document.getElementById("koutuu-area").insertAdjacentHTML('beforeend','<div id="koutuu' + counttag + '">' + data + '</div>');
+	}
+		
+	function openMitumori() {
+	    window.open(
+	        ("/PDF/サンプル見積書.pdf"),
+	        "_blank",
+	        "menubar=0,width=1200,height=900,top=100,left=100"
+	    );
+		G_isWindowOpen = true;
+	}
+	
+	function openChuumon() {
+	    window.open(
+	        ("/PDF/サンプル見積書.pdf"),
+	        "_blank",
+	        "menubar=0,width=1200,height=900,top=100,left=100"
+	    );
+		G_isWindowOpen = true;
+	}
+	
+	function next(){
+        if(paramItem[1] != 'sanshou'){
+            var result = confirm("登録しますか？");
+            if(result){
+                window.location.href = ("/MainMenu");
+            }
+        }else{
+            window.location.href = ("/MainMenu");
+        }
+    }
+	
+	function openWin() {
+		window.open(
+			("/Search"),
+			"_blank",
+			"menubar=0,width=1200,height=900,top=100,left=100"
+		);
+		
+		G_isWindowOpen = true;
+	}
+	
+	function gotFocus() {
+		if (G_isWindowOpen) {
+			G_isWindowOpen = false;
+			
+			document.getElementById("atesaki").value = "SOMPOシステムズ株式会社";
+			document.getElementById("mitumoridate").value = "2021/05/10";
+			document.getElementById("gyomuname").value = "サンプル業務";
+			document.getElementById("kaihatuno").value = "000000000";
+			document.getElementById("gyomuno").value = "123456789";
+			document.getElementById("sagyoukeitai").value = "juninin";
+			document.getElementById("sagyounaiyou").value = "サンプル作業内容";
+			document.getElementById("kikankaisi").value = "2021/05/01";
+			document.getElementById("kikanshuryo").value = "2021/08/31";
+			document.getElementById("totalkousu").value = "3";
+			document.getElementById("nounyu").value = "サンプル納入日";
+			document.getElementById("nouhin").value = "サンプル納品物";
+			document.getElementById("sekininsha").value = "木ノ下雅斗";
+			document.getElementById("skill").value = "損保業務";
+			document.getElementById("sagyoarea").value = "サンプル作業場所";
+			document.getElementById("kingaku").value = "1500000";
+			document.getElementById("name").value = "木ノ下雅斗";
+			document.getElementById("tanka").value = "500000";
+			document.getElementById("kousu").value = "3";
+			document.getElementById("time1").value = "120";
+			document.getElementById("time2").value = "150";
+			document.getElementById("zougaku").value = "450000";
+			document.getElementById("gengaku").value = "550000";
+			document.getElementById("tokkijiko").value = "サンプル特記事項";
+			document.getElementById("bikou").value = "サンプル備考";
+		}
+	}
+        
+
+        var parashorui = '';
+			var url = '';
+			var paratype = '';
+			var urlParam = location.search.substring(1);
+			
+			if(urlParam) {
+				var param = urlParam.split('&');
+			 
+				var arrPara = [];
+			 	
+				for (i = 0; i < param.length; i++) {
+					var paramItem = param[i].split('=');
+					if (paramItem[0] == 'para') {
+						if (paramItem[1] == 'entry') {
+                            document.getElementById("tab6-label").style.display = "none";
+							document.getElementById("labeltenpu-d").style.display = "none";
+							document.getElementById("tenpu-d").style.display = "none";
+						} else if (paramItem[1] == 'edit') {
+							document.getElementById("labeltenpu-d").style.display = "none";
+							document.getElementById("tenpu-d").style.display = "none";
+							document.getElementById("bushoselect1").value = "sol";
+							document.getElementById("atesaki").value = "1c";
+							document.getElementById("mitumoridate").value = "2021/05/10";
+							document.getElementById("gyomuname").value = "サンプル業務";
+							document.getElementById("kaihatuno").value = "000000000";
+							document.getElementById("gyomuno").value = "123456789";
+							document.getElementById("sagyoukeitai").value = "juninin";
+							document.getElementById("sagyounaiyou").value = "サンプル作業内容";
+							document.getElementById("kikankaisi").value = "2021/05/01";
+							document.getElementById("kikanshuryo").value = "2021/08/31";
+							document.getElementById("totalkousu").value = "3";
+							document.getElementById("nounyu").value = "サンプル納入日";
+							document.getElementById("nouhin").value = "サンプル納品物";
+							document.getElementById("sekininsha").value = "木ノ下雅斗";
+							document.getElementById("skill").value = "損保業務";
+							document.getElementById("sagyoarea").value = "サンプル作業場所";
+							document.getElementById("kingaku").value = "1500000";
+							document.getElementById("bushoselect2").value = "sol";
+							document.getElementById("name").value = "木ノ下雅斗";
+							document.getElementById("tanka").value = "500000";
+							document.getElementById("kousu").value = "3";
+							document.getElementById("time1").value = "120";
+							document.getElementById("time2").value = "150";
+							document.getElementById("zougaku").value = "450000";
+							document.getElementById("gengaku").value = "550000";
+							document.getElementById("tokkijiko").value = "サンプル特記事項";
+							document.getElementById("bikou").value = "サンプル備考";
+						} else if (paramItem[1] == 'sanshou') {
+                            document.getElementById("tab6-label").style.display = "none";
+							document.getElementById("tenpu").style.display = "none";
+							document.getElementById("labeltenpu").style.display = "none";
+							document.getElementById("add").style.display = "none";
+							document.getElementById("historycall").style.display = "none";
+							document.getElementById("add").style.display = "none";
+							var inputItem = document.getElementById("inputitem-area-mitumori").getElementsByTagName("input");
+							for(var i=0; i<inputItem.length; i++){
+								inputItem[i].readOnly = true;
+							}
+							document.getElementById('sagyoarea').readOnly = true;
+							document.getElementById('skill').readOnly = true;
+							document.getElementById('tokkijiko').readOnly = true;
+							document.getElementById('bikou').readOnly = true;
+							document.getElementById('bushoselect1').disabled = true;
+							document.getElementById('bushoselect2').disabled = true;
+							document.getElementById('sagyoukeitai').disabled = true;
+							document.getElementById('atesaki').disabled = true;							
+							
+							document.getElementById("bushoselect1").value = "sol";
+							document.getElementById("atesaki").value = "SOMPOシステムズ株式会社";
+							document.getElementById("mitumoridate").value = "2021/05/10";
+							document.getElementById("gyomuname").value = "サンプル業務";
+							document.getElementById("kaihatuno").value = "000000000";
+							document.getElementById("gyomuno").value = "123456789";
+							document.getElementById("sagyoukeitai").value = "juninin";
+							document.getElementById("sagyounaiyou").value = "サンプル作業内容";
+							document.getElementById("kikankaisi").value = "2021/05/01";
+							document.getElementById("kikanshuryo").value = "2021/08/31";
+							document.getElementById("totalkousu").value = "3";
+							document.getElementById("nounyu").value = "サンプル納入日";
+							document.getElementById("nouhin").value = "サンプル納品物";
+							document.getElementById("sekininsha").value = "木ノ下雅斗";
+							document.getElementById("skill").value = "損保業務";
+							document.getElementById("sagyoarea").value = "サンプル作業場所";
+							document.getElementById("kingaku").value = "1500000";
+							document.getElementById("bushoselect2").value = "sol";
+							document.getElementById("name").value = "木ノ下雅斗";
+							document.getElementById("tanka").value = "500000";
+							document.getElementById("kousu").value = "3";
+							document.getElementById("time1").value = "120";
+							document.getElementById("time2").value = "150";
+							document.getElementById("zougaku").value = "450000";
+							document.getElementById("gengaku").value = "550000";
+							document.getElementById("tokkijiko").value = "サンプル特記事項";
+							document.getElementById("bikou").value = "サンプル備考";
+						}
+					}
+				}
+			}
+
+            var element = document.getElementById("tab2");
+        var parashorui = '';
+        var url = '';
+        var paratype = '';
+        var urlParam = location.search.substring(1);
+        if(urlParam) {
+            var param = urlParam.split('&');
+			 
+				var arrPara = [];
+			 
+				for (i = 0; i < param.length; i++) {
+					var paramItem = param[i].split('=');
+					if (paramItem[0] == 'para') {
+						if (paramItem[1] == 'edit') {
+							document.getElementById("ankencd").value = "XXXX123456";
+							document.getElementById("shinchokuno").value = "XXXX99999";
+							document.getElementById("nounyuukijitu").value = "2021/08/20";
+							document.getElementById("kenshuukijitu").value = "2021/09/01";
+							document.getElementById("nounyuuarea").value = "サンプル納入場所";
+							document.getElementById("sonota").value = "サンプルその他";
+						} else if (paramItem[1] == 'sanshou') {
+							document.getElementById("historycall").style.display = "none";
+							var inputItem = document.getElementById("inputitem-area-chuumon").getElementsByTagName("input");
+							for(var i=0; i<inputItem.length; i++){
+							  inputItem[i].readOnly = true;
+							}
+							document.getElementById('sagyoarea-chuumon').readOnly = true;
+							document.getElementById('sonota').readOnly = true;
+							
+							document.getElementById("ankencd").value = "XXXX123456";
+							document.getElementById("shinchokuno").value = "XXXX99999";
+							document.getElementById("nounyuukijitu").value = "2021/08/20";
+							document.getElementById("kenshuukijitu").value = "2021/09/01";
+							document.getElementById("nounyuuarea").value = "サンプル納入場所";
+							document.getElementById("sonota").value = "サンプルその他";
+						} else if (paramItem[1] == 'bpchuumon') {
+                            element.checked = true;
+                            document.getElementById("tab1-label").style.display = "none";
+                            document.getElementById("tab3-label").style.display = "none";
+                            document.getElementById("tab4-label").style.display = "none";
+                            document.getElementById("tab5-label").style.display = "none";
+                            document.getElementById("tab6-label").style.display = "none";
+							document.getElementById("mitumorino").style.visibility = "hidden";
+						}
+					}
+				}
+			}
+	
+
+	var parashorui = '';
+			var url = '';
+			var paratype = '';
+			var urlParam = location.search.substring(1);
+			if(urlParam) {
+				var param = urlParam.split('&');
+			 
+				var arrPara = [];
+			 
+				for (i = 0; i < param.length; i++) {
+					var paramItem = param[i].split('=');
+					if (paramItem[0] == 'para') {
+						if (paramItem[1] == 'sanshou') {
+							document.getElementById("historycall").style.display = "none";
+							var inputItem = document.getElementById("inputitem-area-chuumonuke").getElementsByTagName("input");
+							for(var i=0; i<inputItem.length; i++){
+							  inputItem[i].readOnly = true;
+							}
+							document.getElementById('sagyoarea-chuumonuke').readOnly = true;
+							document.getElementById('sonota-chuumonuke').readOnly = true;
+						}
+					}
+				}
+			}
+
+
+        var parashorui = '';
+        var url = '';
+        var paratype = '';
+        var urlParam = location.search.substring(1);
+			if(urlParam) {
+				var param = urlParam.split('&');
+			 
+				var arrPara = [];
+			 
+				for (i = 0; i < param.length; i++) {
+					var paramItem = param[i].split('=');
+					if (paramItem[0] == 'para') {
+						if (paramItem[1] == 'entry') {
+						} else if (paramItem[1] == 'edit') {
+							document.getElementById("labeltenpu-d-kenshuirai").style.display = "none";
+							document.getElementById("tenpu-d-kenshuirai").style.display = "none";
+							document.getElementById("bikou-kenshuirai").value = "サンプル備考";
+						} else if (paramItem[1] == 'sanshou') {
+							document.getElementById("historycall").style.display = "none";
+							
+							var inputItem = document.getElementById("inputitem-area-kenshuirai").getElementsByTagName("input");
+							for(var i=0; i<inputItem.length; i++){
+							  inputItem[i].readOnly = true;
+							}
+							document.getElementById('bikou-kenshuirai').readOnly = true;
+							document.getElementById("bikou-kenshuirai").value = "サンプル備考";
+						}
+					}
+				}
+			}
+
+
+        var element = document.getElementById("tab5");
+	var parashorui = '';
+			var url = '';
+			var paratype = '';
+			var urlParam = location.search.substring(1);
+			if(urlParam) {
+				var param = urlParam.split('&');
+			 
+				var arrPara = [];
+			 
+				for (i = 0; i < param.length; i++) {
+					var paramItem = param[i].split('=');
+					if (paramItem[0] == 'para') {
+						if (paramItem[1] == 'entry') {
+							document.getElementById("seikyu-twin").style.display = "none";
+                            document.getElementById("date-twin").style.display = "none";
+							document.getElementById("labeltenpu-d-seikyu").style.display = "none";
+							document.getElementById("tenpu-d-seikyu").style.display = "none";
+						} else if (paramItem[1] == 'edit') {
+							document.getElementById("seikyu-twin").style.display = "none";
+                            document.getElementById("date-twin").style.display = "none";
+							document.getElementById("labeltenpu-d-seikyu").style.display = "none";
+							document.getElementById("tenpu-d-seikyu").style.display = "none";
+						} else if (paramItem[1] == 'sanshou') {
+							document.getElementById("seikyu-twin").style.display = "none";
+                            document.getElementById("date-twin").style.display = "none";
+							document.getElementById("historycall").style.display = "none";
+							document.getElementById("labeltenpu-seikyu").style.display = "none";
+							document.getElementById("tenpu-seikyu").style.display = "none";
+							document.getElementById("adduchiwake").style.display = "none";
+							document.getElementById("addkoutuu").style.display = "none";
+							var inputItem = document.getElementById("inputitem-area-seikyu").getElementsByTagName("input");
+							for(var i=0; i<inputItem.length; i++){
+							  inputItem[i].readOnly = true;
+							}
+							document.getElementById('tokkijiko-seikyu').readOnly = true;
+							document.getElementById('bikou-seikyu').readOnly = true;
+							document.getElementById('tokkijiko-seikyu-koutuu').readOnly = true;
+						} else if (paramItem[1] == 'bpseikyu') {
+                            element.checked = true;
+                            document.getElementById("tab1-label").style.display = "none";
+                            document.getElementById("tab2-label").style.display = "none";
+                            document.getElementById("tab3-label").style.display = "none";
+                            document.getElementById("tab4-label").style.display = "none";
+                            document.getElementById("tab6-label").style.display = "none";
+							document.getElementById("seikyuNo").style.display = "none";
+							document.getElementById("pdf").style.display = "none";
+							document.getElementById("historycall").style.display = "none";
+							
+						}
+					}
+				}
+			}
+
+
+		document.getElementById("bushoselect1-oboegaki").value = "sol";
+			document.getElementById("atesaki-oboegaki").value = "SOMPOシステムズ株式会社";
+			document.getElementById("mitumoridate-oboegaki").value = "2021/05/10";
+			document.getElementById("gyomuname-oboegaki").value = "サンプル業務";
+			document.getElementById("kaihatuno-oboegaki").value = "000000000";
+			document.getElementById("gyomuno-oboegaki").value = "123456789";
+			document.getElementById("sagyoukeitai-oboegaki").value = "準委任契約";
+			document.getElementById("sagyounaiyou-oboegaki").value = "サンプル作業内容";
+			document.getElementById("kikankaisi-oboegaki").value = "2021/05/01";
+			document.getElementById("kikanshuryo-oboegaki").value = "2021/08/31";
+			document.getElementById("totalkousu-oboegaki").value = "3";
+			document.getElementById("nounyu-oboegaki").value = "サンプル納入日";
+			document.getElementById("nouhin-oboegaki").value = "サンプル納品物";
+			document.getElementById("sekininsha-oboegaki").value = "木ノ下雅斗";
+			document.getElementById("skill-oboegaki").value = "損保業務";
+			document.getElementById("sagyoarea-oboegaki").value = "サンプル作業場所";
+			document.getElementById("kingaku-oboegaki").value = "1500000";
+			document.getElementById("bushoselect2-oboegaki").value = "sol";
+			document.getElementById("name-oboegaki").value = "木ノ下雅斗";
+			document.getElementById("tanka-oboegaki").value = "500000";
+			document.getElementById("kousu-oboegaki").value = "3";
+			document.getElementById("time1-oboegaki").value = "120";
+			document.getElementById("time2-oboegaki").value = "150";
+			document.getElementById("zougaku-oboegaki").value = "450000";
+			document.getElementById("gengaku-oboegaki").value = "550000";
+			document.getElementById("tokkijiko-oboegaki").value = "サンプル特記事項";
+			document.getElementById("bikou-oboegaki").value = "サンプル備考";
+			document.getElementById("ankencd-oboegaki").value = "XXXX123456";
+			document.getElementById("shinchokuno-oboegaki").value = "XXXX99999";
+			document.getElementById("nounyuukijitu-oboegaki").value = "2021/08/20";
+			document.getElementById("kenshuukijitu-oboegaki").value = "2021/09/01";
+			document.getElementById("nounyuuarea-oboegaki").value = "サンプル納入場所";
+			document.getElementById("sonota-oboegaki").value = "サンプルその他";
+			/*]]>*/
+		</script>
+</form>
+    </body>
+</html>

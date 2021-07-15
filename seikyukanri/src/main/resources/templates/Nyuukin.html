@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title th:text="${title}"></title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<h1 style="text-align: center;" th:text="${title}"></h1>
+	<div class="nyukin-area">
+		<label for="atesaki">入金日　　　</label>
+        	<input type="text" id="nyukindate"><br>
+        	<label for="mitumoridate">入金額　　　</label>
+        	<input type="text" id="nyukingaku"><br>
+	</div>
+	<div class="button-area">	
+		<input type="button" class="nyuukin" th:onclick="nyuukin();" value="登録">
+		<input type="button" class="nyuukin" th:onclick="closeWin();" value="いいえ">
+	</div>
+</body>
+
+<script type="text/javascript" th:inline="javascript">
+		/*<![CDATA[*/
+	function nyuukin() {
+		open('about:blank', '_self').close();
+	}
+	function closeWin() {
+	    open('about:blank', '_self').close();
+	}
+	/*]]>*/
+	</script>
+</html>

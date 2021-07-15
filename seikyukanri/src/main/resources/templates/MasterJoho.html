@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+    <h1 style="text-align: center">マスタ情報</h1>
+    <div id="syain" style="text-align: center">
+        <table class="hyoji-area" border="1">
+            <tr>
+                <th></th>
+                <th>社員番号</th>
+                <th>社員名</th>
+                <th>役職</th>
+                <th>所属部署</th>
+                <th>雇用形態</th>
+                <td>更新</td>
+            </tr>
+            <div id="Master-area">
+                <tr>
+                    <td><input type="checkbox" name="mas"></td>
+                    <td><input type="text" id="up1" value="209901"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="button" onclick="update()" value="更新"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="text" id="up2" value="209902"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="button" onclick="update()" value="更新"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="text" id="up3" value="209903"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="button" onclick="update()" value="更新"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="text" id="up4" value="209904"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="button" onclick="update()" value="更新"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="text" id="up5" value="209905"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="button" onclick="update()" value="更新"></td>
+                </tr>
+            </div>
+        </table>
+        <form method="get">
+	        <div class="mbutton-area">
+	            <input type="submit" class="add" formaction="syaintou" th:value="登録">
+	            <input type="button" class="delete" th:onclick="sakujyo()" value="削除">
+	            <input type="button" class="back" th:onclick="location.href='/MasterMenu'" value="戻る">
+	        </div>
+        </form>
+    </div>
+
+    <div style="text-align: center" id="torihiki">
+        <table class="hyoji-area" border="1">
+            <tr>
+                <th></th>
+                <th>取引先コード</th>
+                <th>会社名</th>
+                <th>更新</th>
+            </tr>
+            <div id="Master-area">
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="text" id="up6" value="dummy"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="button" onclick="update()" value="更新"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="text" id="up7" value="dummy"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="button" onclick="update()" value="更新"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="text" id="up8" value="dummy"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="button" onclick="update()" value="更新"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="text" id="up9" value="dummy"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="button" onclick="update()" value="更新"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="text" id="up10" value="dummy"></td>
+                    <td><input type="text" value="dummy"></td>
+                    <td><input type="button" onclick="update()" value="更新"></td>
+                </tr>
+            </div>
+        </table>
+        <form method="get">
+        	<div class="mbutton-area">
+            	<input type="submit" class="add" formaction="torihikitou" th:value="登録">
+            	<input type="button" class="delete" th:onclick="sakujyo()" value="削除">
+            	<input type="button" class="back" th:onclick="location.href='/MasterMenu'" value="戻る">
+       		</div>
+        </form>
+        
+    </div>
+    <script type="text/javascript" th:inline="javascript">
+        /*<![CDATA[*/
+        var url = '';
+        var paratype = '';
+        var urlParam = location.search.substring(1);
+        const up1 = document.getElementById('up1');
+        const up2 = document.getElementById('up2');
+        const up3 = document.getElementById('up3');
+        const up4 = document.getElementById('up4');
+        const up5 = document.getElementById('up5');
+        if(urlParam) {
+            var param = urlParam.split('&');
+            var arrPara = [];
+
+            for (i = 0; i < param.length; i++) {
+                var paramItem = param[i].split('=');
+                if (paramItem[0] == 'para') {
+                    if(paramItem[1] == 'syain'){
+                        up1.readOnly = true;
+                        up2.readOnly = true;
+                        up3.readOnly = true;
+                        up4.readOnly = true;
+                        up5.readOnly = true;
+                        document.getElementById("torihiki").style.display = "none";
+                        }
+                    }
+                }
+            }
+        
+        var url = '';
+        var paratype = '';
+        var urlParam = location.search.substring(1);
+        const up6 = document.getElementById('up6');
+        const up7 = document.getElementById('up7');
+        const up8 = document.getElementById('up8');
+        const up9 = document.getElementById('up9');
+        const up10 = document.getElementById('up10');
+        if(urlParam) {
+            var param = urlParam.split('&');
+
+            var arrPara = [];
+
+            for (i = 0; i < param.length; i++) {
+                var paramItem = param[i].split('=');
+                if (paramItem[0] == 'para') {
+                    if(paramItem[1] == 'torihiki'){
+                        up6.readOnly = true;
+                        up7.readOnly = true;
+                        up8.readOnly = true;
+                        up9.readOnly = true;
+                        up10.readOnly = true;
+                        document.getElementById("syain").style.display = "none";
+                    }
+                }
+            }
+        } 
+            /*]]>*/
+        </script>
+        
+    <script type="text/javascript" th:inline="javascript">
+     /*<![CDATA[*/
+     	function update(){
+            var result = confirm("更新しますか？");
+            if(paramItem[1] == 'syain'){
+                if(result){
+                    window.location.href = './MasterJoho?para=syain';
+                } 
+            } else{
+                window.location.href = './MasterJoho?para=torihiki';
+            }
+        }
+        
+        function sakujyo(){
+            var result = confirm("削除しますか？");
+            if(paramItem[1] == 'syain'){
+                if(result){
+                    window.location.href = './MasterJoho?para=syain';
+                }
+            }
+            else{
+                window.location.href = './MasterJoho?para=torihiki';
+            }
+        }
+	 /*]]>*/
+    </script>
+</body>
+</html>

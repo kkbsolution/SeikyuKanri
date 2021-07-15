@@ -1,0 +1,212 @@
+<head>
+	<title>請求書情報登録</title>
+	<link rel="stylesheet" href="style.css" type="text/css">
+	<script type="text/javascript">
+	var G_isWindowOpen = false;
+	</script>
+</head>
+<body>
+	<script type="text/javascript">
+	<!--
+	function openWin() {
+	    window.open(
+	        "./Search.html",
+	        "_blank",
+	        "menubar=0,width=1200,height=900,top=100,left=100"
+	    );
+		G_isWindowOpen = true;
+	}
+	function openMitumori() {
+	    window.open(
+	        "./PDF/サンプル見積書.pdf",
+	        "_blank",
+	        "menubar=0,width=1200,height=900,top=100,left=100"
+	    );
+		G_isWindowOpen = true;
+	}
+	function openChuumon() {
+	    window.open(
+	        "./PDF/サンプル見積書.pdf",
+	        "_blank",
+	        "menubar=0,width=1200,height=900,top=100,left=100"
+	    );
+		G_isWindowOpen = true;
+	}
+	function gotFocus() {
+		if (G_isWindowOpen) {
+			G_isWindowOpen = false;
+			
+			//document.getElementById("atesaki").value = "";
+			//document.getElementById("seikyuugaku").value = "";
+			document.getElementById("gyomuname").value = "サンプル業務";
+			//document.getElementById("sagyoarea").value = "";
+		}
+	}
+	function adduchiwakerecord() {
+		var data = document.getElementById("uchiwake1").innerHTML;
+		counttag = (document.getElementById('uchiwake-area').childElementCount);
+		document.getElementById("uchiwake-area").insertAdjacentHTML('beforeend','<div id="uchiwake' + counttag + '">' + data + '</div>');
+	}
+	function addkoutuurecord() {
+		var data = document.getElementById("koutuu1").innerHTML;
+		counttag = (document.getElementById('koutuu-area').childElementCount);
+		document.getElementById("koutuu-area").insertAdjacentHTML('beforeend','<div id="koutuu' + counttag + '">' + data + '</div>');
+	}
+	function next() {
+		var parashorui = '';
+		var url = '';
+		var paratype = '';
+		var urlParam = location.search.substring(1);
+		if(urlParam) {
+			var param = urlParam.split('&');
+		 
+			var arrPara = [];
+		 
+			for (i = 0; i < param.length; i++) {
+				var paramItem = param[i].split('=');
+				if (paramItem[0] == 'para') {
+					if (paramItem[1] == 'entry') {
+						paratype = '?para=entry';
+					} else if (paramItem[1] == 'edit') {
+						paratype = '?para=edit';
+					} else if (paramItem[1] == 'sanshou') {
+						paratype = '?para=sanshou';
+					}
+				} else if (paramItem[0] == 'parashorui') {
+					if (paramItem[1] == 'oboegaki') {
+						parashorui = parashorui + '&parashorui=oboegaki';
+						if (url == '') {
+							url = './JohoEntryOboegaki.html' + paratype;
+						}
+					}
+				}
+			}
+			if (url == '') {
+				if (paratype == '?para=sanshou') {
+					location.href = './MainMenu.html';
+				} else {
+					location.href = './Kanryou.html';
+				}
+			} else if (url) {
+				location.href = url + parashorui;
+			}
+		} else {
+			location.href = './MainMenu.html';
+		}
+	}
+	//-->
+	</script>
+	<h1 style="text-align: center;" >請求書情報登録</h1>
+	<form method="post" action="../datareceive.html" onSubmit="return checkSubmit()">
+		<div class="inputitem-area" id="inputitem-area">
+			<div style="text-align: center;">見積No：00000000</div>
+			<p><sapn id='seikyuNo'>請求No：XXXXXXXXX</span></p>
+			<span id='seikyubango'>
+			<label for="seikyubango">請求番号　　　　</label>
+			<input type="text" id="seikyubango" value="1234567890"><br>
+			</span>
+			<label for="atesaki">宛先　　　　　　</label>
+			<input type="text" id="atesaki" value="SOMPOシステムズ株式会社"><br>
+			<label for="seikyuugaku1">御請求合計金額　</label>
+			<input type="text" id="seikyuugaku1" value="3000000" readonly>円(税込)
+			<input type="text" id="seikyuugaku2" value="3000000" readonly>円(税抜)<br>
+			<label for="gyomuname">依頼作業名　　　</label>
+			<input type="text" id="gyomuname" value="初期値は見積書情報"><br>
+			<label for="date">請求日　　　　　</label>
+			<input type="text" id="date"><br>
+			<label for="kinmuupload" id="labeltenpu">勤務表を添付　　</label>
+			<input type="file" name="kinmuupload" id="tenpu">
+			<span id='pdf'>
+			<label for="meisaiupload" id="labeltenpu-d">勤務表をダウンロード</label>
+			<input type="button" name="meisaiupload" id="tenpu-d" value="ダウンロード"><br>
+			<input type="button" onclick="openMitumori()" value="見積書PDF表示">
+			<input type="button" onclick="openChuumon()" value="注文書PDF表示">
+			</span>
+			<div class="uchiwake-area" id="uchiwake-area" style="background-color: lightgray">
+				<label for="uchiwake">内訳　　　</label>
+				<div id="uchiwake1">
+					<label for="name">氏名</label>
+					<input type="text" id="name" value="木ノ下雅斗">
+					<label for="tanka">基本単価</label>
+					<input type="text" id="tanka" value="500000">円
+					<label for="kousu">　工数</label>
+					<input type="text" id="kousu" value="1">人月
+					<input type="radio" name="radio-zougengaku" value="time" checked="checked">増額
+					<input type="radio" name="radio-zougengaku" value="kotei">減額
+					<input type="text" id="zangyou" value="10">時間
+					<label for="seikyuu">請求額</label>
+					<input type="text" id="seikyuu" value="500000">円<br>
+					<label for="tokkijiko">特記事項</label><br>
+					<textarea id="tokkijiko"  cols="80" rows="5"></textarea><br>
+				</div>
+			</div>
+			<input type="button" class="adduchiwake" id="adduchiwake" value="追加" onclick="adduchiwakerecord()"><br>
+			<div class="koutuu-area" id="koutuu-area" style="background-color: lightgray">
+				<p>その他</p>
+				<div id="koutuu1">
+					<label for="name">氏名</label>
+					<input type="text" id="name" value="木ノ下雅斗">
+					<label for="koutuuhi">金額</label>
+					<input type="text" id="koutuuhi" value="2000">円<br>
+					<label for="tokkijiko">特記事項</label><br>
+					<textarea id="tokkijiko"  cols="80" rows="5"></textarea><br>
+				</div>
+			</div>
+			<input type="button" class="addkoutuu" id="addkoutuu" value="追加" onclick="addkoutuurecord()"><br>
+			<label for="bikou">備考</label><br>
+			<textarea id="bikou"  cols="80" rows="5"></textarea><br>
+		</div>
+		<div  class="button-area">
+			<input type="button" class="storage" id="save" onclick="location.href='./Kanryou.html'" value="一時保管">
+			<input type="button" class="historycall" id="historycall" onclick="openWin()" onfocus="gotFocus()" value="過去呼出">
+			<input type="button" class="next" onclick="next()" value="次へ">
+			<input type="button" class="back" onclick="history.back()" value="戻る">
+		</div>
+		<script type="text/javascript">
+		<!--
+			var parashorui = '';
+			var url = '';
+			var paratype = '';
+			var urlParam = location.search.substring(1);
+			if(urlParam) {
+				var param = urlParam.split('&');
+			 
+				var arrPara = [];
+			 
+				for (i = 0; i < param.length; i++) {
+					var paramItem = param[i].split('=');
+					if (paramItem[0] == 'para') {
+						if (paramItem[1] == 'entry') {
+							document.getElementById("seikyubango").style.display = "none";
+							document.getElementById("labeltenpu-d").style.display = "none";
+							document.getElementById("tenpu-d").style.display = "none";
+						} else if (paramItem[1] == 'edit') {
+							document.getElementById("labeltenpu-d").style.display = "none";
+							document.getElementById("tenpu-d").style.display = "none";
+						} else if (paramItem[1] == 'sanshou') {
+							document.getElementById("historycall").style.display = "none";
+							document.getElementById("save").style.display = "none";
+							document.getElementById("labeltenpu").style.display = "none";
+							document.getElementById("tenpu").style.display = "none";
+							document.getElementById("adduchiwake").style.display = "none";
+							document.getElementById("addkoutuu").style.display = "none";
+							var inputItem = document.getElementById("inputitem-area").getElementsByTagName("input");
+							for(var i=0; i<inputItem.length; i++){
+							  inputItem[i].readOnly = true;
+							}
+							document.getElementById('bikou').readOnly = true;
+							document.getElementById('tokkijiko').readOnly = true;
+						} else if (paramItem[1] == 'bpseikyu') {
+							document.getElementById("seikyuNo").style.display = "none";
+							document.getElementById("pdf").style.display = "none";
+							document.getElementById("historycall").style.display = "none";
+							document.getElementById("save").style.display = "none";
+							
+						}
+					}
+				}
+			}
+		//-->
+		</script>
+	</form>
+</body>

@@ -1,0 +1,148 @@
+<head>
+	<title>検収依頼書情報登録</title>
+	<link rel="stylesheet" href="style.css" type="text/css">
+	<script type="text/javascript">
+	var G_isWindowOpen = false;
+	</script>
+</head>
+<body>
+	<script type="text/javascript">
+	<!--
+	function openWin() {
+	    window.open(
+	        "./Search.html",
+	        "_blank",
+	        "menubar=0,width=1200,height=900,top=100,left=100"
+	    );
+		G_isWindowOpen = true;
+	}
+	function gotFocus() {
+		if (G_isWindowOpen) {
+			G_isWindowOpen = false;
+			
+			document.getElementById("seikabutu").value = "システム仕様書";
+			document.getElementById("suuryou").value = "1";
+			document.getElementById("bikou").value = "サンプル備考";
+		}
+	}
+	function next() {
+		var parashorui = '';
+		var url = '';
+		var paratype = '';
+		var urlParam = location.search.substring(1);
+		if(urlParam) {
+			var param = urlParam.split('&');
+		 
+			var arrPara = [];
+		 
+			for (i = 0; i < param.length; i++) {
+				var paramItem = param[i].split('=');
+				if (paramItem[0] == 'para') {
+					if (paramItem[1] == 'entry') {
+						paratype = '?para=entry';
+					} else if (paramItem[1] == 'edit') {
+						paratype = '?para=edit';
+					} else if (paramItem[1] == 'sanshou') {
+						paratype = '?para=sanshou';
+					}
+				} else if (paramItem[0] == 'parashorui') {
+					if (paramItem[1] == 'seikyuu') {
+						parashorui = parashorui + '&parashorui=seikyuu';
+						if (url == '') {
+							url = './JohoEntrySeikyuu.html' + paratype;
+						}
+					}
+					if (paramItem[1] == 'oboegaki') {
+						parashorui = parashorui + '&parashorui=oboegaki';
+						if (url == '') {
+							url = './JohoEntryOboegaki.html' + paratype;
+						}
+					}
+				}
+			}
+			if (url == '') {
+				if (paratype == '?para=sanshou') {
+					location.href = './MainMenu.html';
+				} else {
+					location.href = './Kanryou.html';
+				}
+			} else if (url) {
+				location.href = url + parashorui;
+			}
+		} else {
+			location.href = './MainMenu.html';
+		}
+	}
+	function addrecord() {
+		var data = document.getElementById("seikabutu1").innerHTML;
+		counttag = ((document.getElementById('seikabutu-area').childElementCount) / 2) + 1;
+		document.getElementById("seikabutu-area").insertAdjacentHTML('beforeend','<label>' + counttag + '</label>');
+		document.getElementById("seikabutu-area").insertAdjacentHTML('beforeend','<span id="seikabutu' + counttag + '">' + data + '</span>');
+	}
+	//-->
+	</script>
+	<h1 style="text-align: center;" >検収依頼書情報登録</h1>
+	<form method="post" action="../datareceive.html" onSubmit="return checkSubmit()">
+		<div class="inputitem-area" id="inputitem-area">
+			<div style="text-align: center;">見積No：00000000</div>
+			<label for="atesaki">宛先　　　　　　　</label>
+			<input type="text" id="atesaki" value="SOMPOシステムズ株式会社"><br>
+			<label for="gyomuname">件名　　　　　　　</label>
+			<input type="text" id="gyomuname" value="初期値は見積書情報"><br>
+			<label for="seikabutu">成果物・作業内訳　</label><br>
+			<label for="bikou">備考</label><br>
+			<textarea id="bikou"  cols="80" rows="5"></textarea><br>
+		</div>
+		<div  class="button-area">
+			<input type="button" class="storage" id="save" onclick="next()" value="一時保管">
+			<input type="button" class="historycall" id="historycall" onclick="openWin()" onfocus="gotFocus()" value="過去呼出">
+			<input type="button" class="next" onclick="next()" value="次へ">
+			<input type="button" class="back" onclick="history.back()" value="戻る">
+		</div>
+		<script type="text/javascript">
+		<!--
+			var parashorui = '';
+			var url = '';
+			var paratype = '';
+			var urlParam = location.search.substring(1);
+			if(urlParam) {
+				var param = urlParam.split('&');
+			 
+				var arrPara = [];
+			 
+				for (i = 0; i < param.length; i++) {
+					var paramItem = param[i].split('=');
+					if (paramItem[0] == 'para') {
+						if (paramItem[1] == 'entry') {
+							document.getElementById("labeltenpu-d").style.display = "none";
+							document.getElementById("tenpu-d").style.display = "none";
+						} else if (paramItem[1] == 'edit') {
+							document.getElementById("labeltenpu-d").style.display = "none";
+							document.getElementById("tenpu-d").style.display = "none";
+
+							document.getElementById("seikabutu").value = "システム仕様書";
+							document.getElementById("suuryou").value = "1";
+							document.getElementById("bikou").value = "サンプル備考";
+						} else if (paramItem[1] == 'sanshou') {
+							document.getElementById("historycall").style.display = "none";
+							document.getElementById("save").style.display = "none";
+							document.getElementById("labeltenpu").style.display = "none";
+							document.getElementById("tenpu").style.display = "none";
+							document.getElementById("add").style.display = "none";
+							var inputItem = document.getElementById("inputitem-area").getElementsByTagName("input");
+							for(var i=0; i<inputItem.length; i++){
+							  inputItem[i].readOnly = true;
+							}
+							document.getElementById('bikou').readOnly = true;
+
+							document.getElementById("seikabutu").value = "システム仕様書";
+							document.getElementById("suuryou").value = "1";
+							document.getElementById("bikou").value = "サンプル備考";
+						}
+					}
+				}
+			}
+		//-->
+		</script>
+	</form>
+</body>

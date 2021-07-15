@@ -1,0 +1,183 @@
+<head>
+	<title>注文書情報登録</title>
+	<link rel="stylesheet" href="style.css" type="text/css">
+	
+	<script type="text/javascript">
+	var G_isWindowOpen = false;
+	</script>
+</head>
+<body>
+	<script type="text/javascript">
+	<!--
+	function openWin() {
+	    window.open(
+	        "./Search.html",
+	        "_blank",
+	        "menubar=0,width=1200,height=900,top=100,left=100"
+	    );
+	    
+		G_isWindowOpen = true;
+	}
+	function gotFocus() {
+		if (G_isWindowOpen) {
+			G_isWindowOpen = false;
+			
+			document.getElementById("ankencd").value = "XXXX123456";
+			document.getElementById("shinchokuno").value = "XXXX99999";
+			document.getElementById("nounyuukijitu").value = "2021/08/20";
+			document.getElementById("kenshuukijitu").value = "2021/09/01";
+			document.getElementById("nounyuuarea").value = "サンプル納入場所";
+			document.getElementById("sonota").value = "サンプルその他";
+		}
+	}
+	function next() {
+		var parashorui = '';
+		var url = '';
+		var paratype = '';
+		var urlParam = location.search.substring(1);
+		if(urlParam) {
+			var param = urlParam.split('&');
+		 
+			var arrPara = [];
+		 
+			for (i = 0; i < param.length; i++) {
+				var paramItem = param[i].split('=');
+				if (paramItem[0] == 'para') {
+					if (paramItem[1] == 'entry') {
+						paratype = '?para=entry';
+					} else if (paramItem[1] == 'edit') {
+						paratype = '?para=edit';
+					} else if (paramItem[1] == 'sanshou') {
+						paratype = '?para=sanshou';
+					}
+				} else if (paramItem[0] == 'parashorui') {
+					if (paramItem[1] == 'ukesho') {
+						parashorui = parashorui + '&parashorui=ukesho';
+						if (url == '') {
+							url = './JohoEntryChuumonUke.html' + paratype;
+						}
+					}
+					if (paramItem[1] == 'kenshuu') {
+						parashorui = parashorui + '&parashorui=kenshuu';
+						if (url == '') {
+							url = './JohoEntryKenshuuIrai.html' + paratype;
+						}
+					}
+					if (paramItem[1] == 'seikyuu') {
+						parashorui = parashorui + '&parashorui=seikyuu';
+						if (url == '') {
+							url = './JohoEntrySeikyuu.html' + paratype;
+						}
+					}
+					if (paramItem[1] == 'oboegaki') {
+						parashorui = parashorui + '&parashorui=oboegaki';
+						if (url == '') {
+							url = './JohoEntryOboegaki.html' + paratype;
+						}
+					}
+				}
+			}
+			if (url == '') {
+				if (paratype == '?para=sanshou') {
+					location.href = './MainMenu.html';
+				} else {
+					location.href = './Kanryou.html';
+				}
+			} else if (url) {
+				location.href = url + parashorui;
+			}
+		} else {
+			location.href = './MainMenu.html';
+		}
+		
+	}
+	//-->
+	</script>
+	<h1 style="text-align: center;" >注文書情報登録</h1>
+	<form method="post" action="../datareceive.html" onSubmit="return checkSubmit()">
+		<div class="inputitem-area" id="inputitem-area">
+			<div style="text-align: center;" id="mitumorino">見積No：00000000</div>
+			<label for="atesaki">宛先　　　　　　</label>
+			<input type="text" id="atesaki" value="株式会社キーバインド"><br>
+			<label for="ankencd">基本契約書Ｎｏ　</label>
+			<input type="text" id="ankencd"><br>
+			<label for="shinchokuno">契約進捗管理番号</label>
+			<input type="text" id="shinchokuno"><br>
+			<label for="gyomuname">件名　　　　　　</label>
+			<input type="text" id="gyomuname" value="初期値は見積書情報"><br>
+			<label for="sagyoukeitai">作業の内容概要　</label>
+			<input type="text" id="sagyoukeitai" value="初期値は見積書情報"><br>
+			<label for="kingaku">注文金額　　　　</label>
+			<input type="text" id="kingaku" value="初期値は見積書情報"><br>
+			<label for="seikyu">請求と支払方法　</label>
+			<input type="text" id="seikyu" value="初期値は見積書情報"><br>
+			<label for="kikankaisi">作業期間　　　　</label>
+			<input type="text" id="kikankaisi" value="初期値は見積書情報">
+			<label for="kikanshuryo">～</label>
+			<input type="text" id="kikanshuryo" value="初期値は見積書情報"><br>
+			<label for="nouhin">納品物　　　　　</label>
+			<input type="text" id="nouhin" value="初期値は見積書情報"><br>
+			<label for="sagyoarea">作業場所</label><br>
+			<textarea id="sagyoarea"  cols="80" rows="5">初期値は見積書情報</textarea><br>
+			<label for="nounyuukijitu">納入期日　　　　</label>
+			<input type="text" id="nounyuukijitu"><br>
+			<label for="kenshuukijitu">検収期日　　　　</label>
+			<input type="text" id="kenshuukijitu"><br>
+			<label for="nounyuuarea">納入場所　　　　</label>
+			<input type="text" id="nounyuuarea"><br>
+			<label for="sonota">その他</label><br>
+			<textarea id="sonota"  cols="80" rows="5"></textarea><br>
+		</div>
+		<div  class="button-area">
+			<input type="button" class="storage" id="save" onclick="next()" value="一時保管">
+			<input type="button" class="historycall" id="historycall" onclick="openWin()" onfocus="gotFocus()" value="過去呼出">
+			<input type="button" class="next" onclick="next()" value="次へ">
+			<input type="button" class="back" onclick="history.back()" value="戻る">
+		</div>
+		<script type="text/javascript">
+		<!--
+			var parashorui = '';
+			var url = '';
+			var paratype = '';
+			var urlParam = location.search.substring(1);
+			if(urlParam) {
+				var param = urlParam.split('&');
+			 
+				var arrPara = [];
+			 
+				for (i = 0; i < param.length; i++) {
+					var paramItem = param[i].split('=');
+					if (paramItem[0] == 'para') {
+						if (paramItem[1] == 'edit') {
+							document.getElementById("ankencd").value = "XXXX123456";
+							document.getElementById("shinchokuno").value = "XXXX99999";
+							document.getElementById("nounyuukijitu").value = "2021/08/20";
+							document.getElementById("kenshuukijitu").value = "2021/09/01";
+							document.getElementById("nounyuuarea").value = "サンプル納入場所";
+							document.getElementById("sonota").value = "サンプルその他";
+						} else if (paramItem[1] == 'sanshou') {
+							document.getElementById("historycall").style.display = "none";
+							document.getElementById("save").style.display = "none";
+							var inputItem = document.getElementById("inputitem-area").getElementsByTagName("input");
+							for(var i=0; i<inputItem.length; i++){
+							  inputItem[i].readOnly = true;
+							}
+							document.getElementById('sagyoarea').readOnly = true;
+							document.getElementById('sonota').readOnly = true;
+							
+							document.getElementById("ankencd").value = "XXXX123456";
+							document.getElementById("shinchokuno").value = "XXXX99999";
+							document.getElementById("nounyuukijitu").value = "2021/08/20";
+							document.getElementById("kenshuukijitu").value = "2021/09/01";
+							document.getElementById("nounyuuarea").value = "サンプル納入場所";
+							document.getElementById("sonota").value = "サンプルその他";
+						} else if (paramItem[1] == 'bp') {
+							document.getElementById("mitumorino").style.visibility = "hidden";
+						}
+					}
+				}
+			}
+		//-->
+		</script>
+	</form>
+</body>

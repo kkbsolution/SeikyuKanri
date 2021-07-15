@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>見積No検索</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	
+	<h1 style="text-align: center;">見積No検索</h1>
+	<form th:action="@{/mitumorisearch}" method="get">
+		<div class="mitumorino-area">
+			<label for="koumoku1">見積No</label>
+			<input type="text" id="mitumoriNo">
+			<input type="button" id="mitumorisearch" onclick="openWin()" onfocus="gotFocus()" value="見積No検索"><br>
+
+			<span class="mitumorino-area" id="ClientOrBP">
+				<input type="radio" name="ClientOrBP" id="Client" checked="true">顧客
+				<input type="radio" name="ClientOrBP" id="BP" >BP
+			</span>
+			</div>
+		</div>
+		<div class="button-area">
+			<input type="button" class="next" th:onclick="next()" value="次へ">
+			<input type="button" class="back" onclick="history.back()" value="戻る">
+		</div>
+		<script type="text/javascript" th:inline="javascript">
+		/*<![CDATA[*/
+		var para = location.search;
+		if (para == "?para=status" || para == "?para=nyukin") {
+			document.getElementById("ClientOrBP").style.display = "";
+		} else {
+			document.getElementById("ClientOrBP").style.display = "none";
+		}
+		
+		function next() {
+		var para = location.search;
+		if(para == "?para=edit") {
+			window.location.href=("/ShoruiSelect?para=edit");
+		}else if(para == "?para=sanshou"){
+			window.location.href=("/ShoruiEntry?para=sanshou");
+		}else if (para == "?para=bpseikyu") {
+			window.location.href=("/ShoruiEntry?para=bpseikyu");
+		}else if (para == "?para=bpchuumon"){
+			window.location.href=("/ShoruiEntry?para=bpchuumon");
+		}else if (para == "?para=nyukin") {
+				window.open(
+				("/nyuukin"),
+				"_blank",
+				"menubar=0,width=600,height=400,top=100,left=100"
+				);
+		} else {
+			if (document.getElementById("BP").checked) {
+				window.location.href = ("/ShoruiSelect?para=status&bp=true");
+			} else {
+				window.location.href = ("/ShoruiSelect?para=status");
+			}
+		}
+	}
+	function openWin() {
+			window.open(
+					("/Search"),
+					"_blank",
+					"menubar=0,width=1200,height=900,top=100,left=100"
+			);
+		G_isWindowOpen = true;
+	}
+	function gotFocus() {
+		if (G_isWindowOpen) {
+			G_isWindowOpen = false;
+			
+			document.getElementById("mitumoriNo").value = "00000000";
+			
+			next();
+		}
+	}
+	/*]]>*/
+		</script>
+	</form>
+</body>
+</html>

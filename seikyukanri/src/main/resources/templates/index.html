@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title th:text="${title}"></title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<h1 style="text-align: center;"th:text="${title}"></h1>
+	<form th:action="@{/MainMenu}" method="post">
+		<div class="login">
+			<label for="mailaddress">メールアドレス</label>
+			<input type="text" id="mailaddress"><br>
+			<label for="mailaddress">パスワード　　</label>
+			<input type="password"><br>
+		</div>
+		<div class="button-area">
+			<input type="submit" class="loginbutton" value="ログイン">
+		</div>
+	</form>
+</body>
+</html>

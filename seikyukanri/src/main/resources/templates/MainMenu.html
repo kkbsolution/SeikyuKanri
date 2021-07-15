@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title th:text="${title}"></title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	
+</head>
+<body>
+<form action="?" method="get">
+	<h1 style="text-align: center;"th:text="${h1}"></h1>
+		<div class="menu">
+			<input type="submit" class="keiyaku" formaction="KeiyakuEntryMenu" th:value="契約情報登録"><br>
+			<input type="submit" class="jujukanri" formaction="zyuzyukanri" th:value="書類授受管理"><br>
+			<input type="submit" class="nyukinkanri" formaction="nyukin" value="入金管理"><br>
+			<input type="submit" class="shuukei" formaction="shuukei" value="集計表出力"><br>
+			<input type="submit" class="sanshou" formaction="sansho" value="照会"><br>
+			<input type="submit" class="master" formaction="MasterMenu" value="マスタ管理"><br>
+		</div>
+		<div class="button-area">
+			<input type="button" class="logout" th:onclick=window.location.href=("/") value="ログアウト">
+		</div>
+</form>
+</body>
+</html>

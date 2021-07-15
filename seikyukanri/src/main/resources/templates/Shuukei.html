@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title th:text="${title}"></title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+	<h1 style="text-align: center;"th:text="${title}"></h1>
+	<form action="cgi-bin/formmail.cgi" method="post">
+		<div class="shuukeihyou">
+			<p>表選択
+				<select id="tableselect" name="tableselect" onchange="change();">
+					<option value="Blank"></option>
+					<option value="Kadou">稼働実績表</option>
+					<option value="UriKake">売掛表</option>
+					<option value="KaiKake">買掛表</option>
+					<option value="Sum">サマリー表</option>
+				</select>
+			</p>
+			<p id="yearselect">年度選択
+				<select name="yearselect">
+					<option value="2015">2015年度</option>
+					<option value="2016">2016年度</option>
+					<option value="2017">2017年度</option>
+					<option value="2018">2018年度</option>
+					<option value="2019">2019年度</option>
+					<option value="2020">2020年度</option>
+					<option value="2021">2021年度</option>
+				</select>
+			</p>
+			<p id="yearmonth">年月指定
+				<input type="text" name="start" maxlength="6">～
+				<input type="text" name="end" maxlength="6">
+			</p>
+			<p id="bumon">
+				<input type="checkbox" name="busho" value="1g">損害保険事業部１Ｇ </option><br>
+				<input type="checkbox" name="busho" value="2g">損害保険事業部２Ｇ </option><br>
+				<input type="checkbox" name="busho" value="sol">ソリューション事業部 </option><br>
+				<input type="checkbox" name="busho" value="pac">パッケージ企画販売事業部</option><br>
+				<input type="checkbox" name="busho" value="Sal">営業統括本部</option><br>
+				<input type="checkbox" name="busho" value="kin">金融事業部</option><br>
+			</p>
+		</div>
+		<script>
+			document.getElementById("yearselect").style.display = "none";
+			document.getElementById("yearmonth").style.display = "none";
+
+
+			function change() {
+				if (document.getElementById("tableselect")) {
+					selboxValue = document.getElementById("tableselect").value;
+					if (selboxValue == "Kadou") {
+						document.getElementById("yearselect").style.display = "";
+						document.getElementById("yearmonth").style.display = "none";
+					} else if (selboxValue == "UriKake" || selboxValue == "KaiKake" || selboxValue == "Sum") {
+						document.getElementById("yearselect").style.display = "none";
+						document.getElementById("yearmonth").style.display = "";
+					} else if (selboxValue == "Blank") {
+						document.getElementById("yearselect").style.display = "none";
+						document.getElementById("yearmonth").style.display = "none";
+					}
+				}
+			}
+		</script>
+		<div class="button-area"><input type="submit" class="output" value="出力">
+		<input type="button" class="back" onclick="history.back()" value="戻る"></div>
+	</form>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title th:text="${title}"></title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+	<h1 style="text-align: center"; th:text="${title}"></h1>
+		<div class="shorui">
+			<div style="text-align: center;">見積No：00000000</div>
+			<form name="checkshorui" method="get">
+				<div th:if="${para == 'status'}">
+				<span id="mitumori">
+					<input type="checkbox" name="shorui" value="mitumori">見積書　　　
+				</span>
+				</div>
+				<span id="joho1">
+					<a>見積書　　　送付済　</a>
+					<label for="pdfupload">PDF：</label>
+					<input type="file" name="pdfupload">
+					<input type="button" value="アップロード">
+					<a href="./PDF/サンプル見積書.pdf">ダウンロード</a>
+					<input type="button" class="shounin1" id="shounin1" th:onclick="shouninclick(this.id)" value="承認">
+					<input type="button" class="torikeshi1" id="torikeshi1" th:onclick="torikeshichange(this.id)" value="差戻し">
+				</span>
+				<br>
+				<div th:if="${para == 'status'}">
+				<span id="chuumon">
+					<input type="checkbox" name="shorui" value="chuumon">注文書　　　
+				</span>
+				</div>
+				<span id="joho2">
+					<a>注文書　　　送付済　</a>
+					<label for="pdfupload">PDF：</label>
+					<input type="file" name="pdfupload">
+					<input type="button" value="アップロード">
+					<a href="./PDF/サンプル見積書.pdf">ダウンロード</a>
+					<input type="button" class="shounin2" id="shounin2" th:onclick="shouninclick(this.id)" value="承認">
+					<input type="button" class="torikeshi2" id="torikeshi2" th:onclick="torikeshichange(this.id)" value="差戻し">
+				</span>
+
+				<br>
+				<div th:if="${para == 'status'}">
+				<span id="ukesho">
+					<input type="checkbox" name="shorui" value="ukesho">注文請書　　
+				</span>
+				</div>
+				<span id="joho3">
+					<a>注文請書　　送付済　</a>
+					<label for="pdfupload">PDF：</label>
+					<input type="file" name="pdfupload">
+					<input type="button" value="アップロード">
+					<a href="./PDF/サンプル見積書.pdf">ダウンロード</a>
+					<input type="button" class="shounin3" id="shounin3" th:onclick="shouninclick(this.id)" value="承認">
+					<input type="button" class="torikeshi3" id="torikeshi3" th:onclick="torikeshichange(this.id)" value="差戻し">
+				</span>
+
+				<br>
+				<div th:if="${para == 'status'}">
+				<span id="kenshuu">
+					<input type="checkbox" name="shorui" value="kenshuu">検収依頼書　
+				</span>
+				</div>
+				<span id="joho4">
+					<a>検収依頼書　　　　　</a>
+					<label for="pdfupload">PDF：</label>
+					<input type="file" name="pdfupload">
+					<input type="button" value="アップロード">
+					<a href="./PDF/サンプル見積書.pdf">ダウンロード</a>
+					<input type="button" class="shounin4" id="shounin4" th:onclick="shouninclick(this.id)" value="承認">
+					<input type="button" class="torikeshi4" id="torikeshi4" th:onclick="torikeshichange(this.id)" value="差戻し">
+				</span>
+
+				<br>
+				<div th:if="${para == 'status'}">
+				<span id="seikyuu">
+					<input type="checkbox" name="shorui" value="seikyuu">請求書　　　
+				</span>
+				</div>
+				<span id="joho5">
+					<a>請求書　　　　　　　</a>
+					<label for="pdfupload">PDF：</label>
+					<input type="file" name="pdfupload">
+					<input type="button" value="アップロード">
+					<a href="./PDF/サンプル見積書.pdf">ダウンロード</a>
+					<input type="button" class="shounin5" id="shounin5" th:onclick="shouninclick(this.id)" value="承認">
+					<input type="button" class="torikeshi5" id="torikeshi5" th:onclick="torikeshichange(this.id)" value="差戻し">
+				</span>
+
+				<br>
+				<div th:if="${para == 'status'}">
+				<span id="oboegaki">
+					<input type="checkbox" name="shorui" value="oboegaki">覚書　　　　
+				</span>
+				</div>
+				<span id="joho6">
+					<a>覚書　　　　　　　　</a>
+					<label for="pdfupload">PDF：</label>
+					<input type="file" name="pdfupload">
+					<input type="button" value="アップロード">
+					<a href="./PDF/サンプル見積書.pdf">ダウンロード</a>
+					<input type="button" class="shounin6" id="shounin6" th:onclick="shouninclick(this.id)" value="承認">
+					<input type="button" class="torikeshi6" id="torikeshi6" th:onclick="torikeshichange(this.id)" value="差戻し">
+				</span>
+
+				<br>
+		</div>
+		<div class="button-area">
+
+			<input type="button" class="next" id="entry" th:onclick="next()" value="次へ">
+			<input type="button" class="uketori" id="uketori" th:onclick=window.location.href=("/MainMenu") value="受取">
+			<input type="button" class="soufu" id="soufu" th:onclick=window.location.href=("/MainMenu") value="送付">	
+			<input type="button" class="back" th:onclick="history.back()" value="戻る">
+
+		</div>
+		
+		<script type="text/javascript" th:inline="javascript">
+		/*<![CDATA[*/
+	function next() {
+	var para = location.search;
+	var url = '';
+	var first = true;
+	var parashorui = '';
+	var shorui = document.checkshorui.shorui;
+	for (let i = 0; i < shorui.length; i++) {
+		if (shorui[i].checked) {
+			if (first == true) {
+				if (i == 0) {
+					url = './JohoEntry.html' + para;
+					first = false;
+				} else if (i == 1) {
+					url = './JohoEntryChuumon.html' + para;
+					first = false;
+				} else if (i == 2) {
+					url = './JohoEntryChuumonUke.html' + para;
+					first = false;
+				} else if (i == 3) {
+					url = './JohoEntryKenshuuIrai.html' + para;
+					first = false;
+				} else if (i == 4) {
+					url = './JohoEntrySeikyuu.html' + para;
+					first = false;
+				} else if (i == 5) {
+					url = './JohoEntryOboegaki.html' + para;
+					first = false;
+				}
+
+			}
+			
+			if (i == 0) {
+				parashorui = parashorui + '&parashorui=mitumori';
+			} else if (i == 1) {
+				parashorui = parashorui + '&parashorui=chuumon';
+			} else if (i == 2) {
+				parashorui = parashorui + '&parashorui=ukesho';
+			} else if (i == 3) {
+				parashorui = parashorui + '&parashorui=kenshuu';
+			} else if (i == 4) {
+				parashorui = parashorui + '&parashorui=seikyuu';
+			} else if (i == 5) {
+				parashorui = parashorui + '&parashorui=oboegaki';
+			}
+		}
+	}
+	window.location.href = ("/ShoruiEntry" + "?para=edit");
+}
+			document.getElementById("joho1").style.display = "none";
+			document.getElementById("joho2").style.display = "none";
+			document.getElementById("joho3").style.display = "none";
+			document.getElementById("joho4").style.display = "none";
+			document.getElementById("joho5").style.display = "none";
+			document.getElementById("joho6").style.display = "none";
+			var para = location.search;
+			if (para == '?para=entry' || para == '?para=edit' || para == '?para=sanshou') {
+				document.getElementById("soufu").style.display = "none";
+				document.getElementById("uketori").style.display = "none";
+				if (para == '?para=entry' || para == '?para=sanshou') {
+					document.getElementById("oboegaki").style.display = "none";
+				} else if (para == '?para=edit') {
+					document.getElementById("joho1").style.display = "";
+					document.getElementById("joho2").style.display = "";
+					document.getElementById("joho3").style.display = "";
+					document.getElementById("joho4").style.display = "";
+					document.getElementById("joho5").style.display = "";
+					document.getElementById("joho6").style.display = "";
+				}
+			} else if (para == '?para=status') {
+				document.getElementById("entry").style.display = "none";
+				document.getElementById("oboegaki").style.display = "none";
+			} else if (para == '?para=nyukin') {
+				document.getElementById("entry").style.display = "none";
+				document.getElementById("soufu").style.display = "none";
+				document.getElementById("oboegaki").style.display = "none";
+			}  else if (para == '?para=status&bp=true') {
+				document.getElementById("entry").style.display = "none";
+				document.getElementById("mitumori").style.display = "none";
+				document.getElementById("oboegaki").style.display = "none";
+			} else if (para == '?para=nyukin&bp=true') {
+				document.getElementById("entry").style.display = "none";
+				document.getElementById("soufu").style.display = "none";
+				document.getElementById("mitumori").style.display = "none";
+				document.getElementById("oboegaki").style.display = "none";
+			}
+			var shorui;
+			var changebutton;
+			function shouninclick(id) {
+				if (id == "shounin1"){
+					shorui = "見積書";
+					changebutton = "torikeshi1";
+				} else if (id == "shounin2"){
+					shorui = "注文書";
+					changebutton = "torikeshi2";
+				} else if (id == "shounin3"){
+					shorui = "注文請書";
+					changebutton = "torikeshi3";
+				} else if (id == "shounin4"){
+					shorui = "検収依頼書";
+					changebutton = "torikeshi4";
+				} else if (id == "shounin5"){
+					shorui = "請求書";
+					changebutton = "torikeshi5";
+				} else if (id == "shounin6"){
+					shorui = "請求書";
+					changebutton = "torikeshi6";
+				}
+				if (confirm(shorui + "を承認します。")){
+					document.getElementById(id).style.visibility = "hidden";
+				}
+			}
+			function torikeshichange(id) {
+				window.open(
+					("/ReasonTorikeshi"),
+					 "_blank",
+					 "menubar=0,width=500,height=250,top=100,left=400"
+				);
+				G_isWindowOpen = true;
+				if (id == "torikeshi1"){
+					changebutton = "shounin1";
+				} else if (id == "torikeshi2"){
+					changebutton = "shounin2";
+				} else if (id == "torikeshi3"){
+					changebutton = "shounin3";
+				} else if (id == "torikeshi4"){
+					changebutton = "shounin4";
+				} else if (id == "torikeshi5"){
+					changebutton = "shounin5";
+				} else if (id == "torikeshi6"){
+					changebutton = "shounin6";
+				}
+				document.getElementById(changebutton).style.visibility = "";
+			}
+				/*]]>*/
+		</script>	
+	</form>
+</body>
+</html>
+
+

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+	<title th:text="${title}"></title>
+    	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+    <body>
+	<h1 style="text-align: center;"th:text="${title}"></h1>
+	<form action="?" method="get">
+		<div class="mastermenu">
+			<input type="submit" class="syain" formaction="syain" th:value="社員マスタ"><br>
+			<input type="submit" class="torihiki" formaction="torihiki" th:value="取引先マスタ"><br>
+		</div>
+	</form>
+		<div class="button-area">
+			<input type="button" class="back" th:onclick="location.href='/MainMenu'" value="戻る">
+		</div>
+    </body>
+</html>
