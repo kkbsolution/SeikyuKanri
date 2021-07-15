@@ -132,7 +132,7 @@ public class MyContoroller {
 		mv.setViewName("Search");
 		return mv;
 	}
-	//マスタメニュ なんか出来ました
+	//マスタメニュ
 		@RequestMapping("/MasterMenu")
 		public ModelAndView MasterMenu(ModelAndView mv) {
 			mv.addObject("title", "マスタ管理");
