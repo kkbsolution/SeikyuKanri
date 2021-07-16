@@ -1,6 +1,7 @@
+@charset "UTF-8";
+
 .button-area {text-align: center;}
 input.logout {width: 15%; position: absolute; right: 10px; }
-input.back {width: 15%; position: absolute; right: 10px; }
 input.search {width: 15%;}
 input.call {width: 15%;  position: absolute; bottom: 10px;}
 input.next {width: 15%;}
@@ -30,7 +31,10 @@ input.tomenu {width: 15%;}
 .login {width: 30%; text-align: left; margin-left: auto; margin-right: auto;}
 .loginbutton {margin-left: auto; margin-right: auto;}
 
-.menu {width: 15%; text-align: left; margin-left: auto; margin-right: auto; height:75%;}
+.back {width: 15%; position: absolute; right: 10px; }
+
+.menu {width: 15%; text-align: left; margin-left: auto; margin-right: auto; height: 27em;
+}
 input.keiyaku {width: 100%;}
 input.jujukanri {width: 100%;}
 input.nyukinkanri {width: 100%;}
@@ -38,20 +42,20 @@ input.shuukei {width: 100%;}
 input.sanshou {width: 100%;}
 input.master {width: 100%;}
 
-.keiyakumenu {width: 15%; text-align: center; margin-left: auto; margin-right: auto; height:75%;}
+.keiyakumenu {width: 15%; text-align: center; margin-left: auto; margin-right: auto; height: 27em;}
 input.newkeiyaku {width: 100%;}
 input.kakokeiyaku {width: 100%;}
 input.hokan {width: 100%;}
 input.pdfup {width: 100%;}
 input.partner {width: 100%;}
 
-.mastermenu {width: 15%; text-align: center; margin-left: auto; margin-right: auto; height: 75%}
+.mastermenu {width: 15%; text-align: center; margin-left: auto; margin-right: auto; height: 27em;}
 input.syain {width: 100%;}
 input.torihiki {width: 100%;}
 
-.shorui {width: 80%; text-align: center; margin-left: auto; margin-right: auto; height:75%;}
+.shorui {width: 80%; text-align: center; margin-left: auto; margin-right: auto; height: 27em;}
 
-.mitumorino-area {text-align: center; margin-left: auto; margin-right: auto; height:75%;}
+.mitumorino-area {text-align: center; margin-left: auto; margin-right: auto; height: 27em;}
 
 .searchitem {width: 40%; text-align: left; margin-left: auto; margin-right: auto; height:50%; overflow: scroll;}
 .searchresult {text-align: left; margin-left: auto; margin-right: auto; height:35%; overflow: scroll;}
@@ -62,11 +66,11 @@ tr.result {cursor: hand;}
 
 .nyukin-area {text-align: center; margin-left: auto; margin-right: auto;}
 
-.pdfhyouji {text-align: center; margin-left: auto; margin-right: auto; height:75%;}
+.pdfhyouji {text-align: center; margin-left: auto; margin-right: auto; height: 27em;}
 
 .inputitem-area {width: 90%; text-align: left; margin-left: auto; margin-right: auto; height:75%; overflow:scroll;}
 
-.shuukeihyou {width: 40%; text-align: left; margin-left: auto; margin-right: auto; height:75%;}
+.shuukeihyou {width: 40%; text-align: left; margin-left: auto; margin-right: auto; height: 27em;}
 
 .area {
   width: 1000px;
@@ -129,7 +133,10 @@ input.delete{width: 10%}
     margin-left: auto;
     margin-right: auto;
     margin-top: 6%;
-    height: 60%;
+    height: 25em;
 }
 
+.Masterdiv{
+	height: 20em;
+}
 

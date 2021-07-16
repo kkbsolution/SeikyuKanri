@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${title}"></title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
     <h1 style="text-align: center">マスタ情報</h1>
-    <div id="syain" style="text-align: center">
+    <div id="syain" style="text-align: center" class="Masterdiv">
         <table class="hyoji-area" border="1">
             <tr>
                 <th></th>
@@ -76,7 +76,7 @@
         </form>
     </div>
 
-    <div style="text-align: center" id="torihiki">
+    <div style="text-align: center" id="torihiki" class="Masterdiv">
         <table class="hyoji-area" border="1">
             <tr>
                 <th></th>
@@ -117,7 +117,7 @@
                 </tr>
             </div>
         </table>
-        <form method="get">
+        <form method="get" class="form">
         	<div class="mbutton-area">
             	<input type="submit" class="add" formaction="torihikitou" th:value="登録">
             	<input type="button" class="delete" th:onclick="sakujyo()" value="削除">
