@@ -124,46 +124,7 @@
 	var first = true;
 	var parashorui = '';
 	var shorui = document.checkshorui.shorui;
-	for (let i = 0; i < shorui.length; i++) {
-		if (shorui[i].checked) {
-			if (first == true) {
-				if (i == 0) {
-					url = './JohoEntry.html' + para;
-					first = false;
-				} else if (i == 1) {
-					url = './JohoEntryChuumon.html' + para;
-					first = false;
-				} else if (i == 2) {
-					url = './JohoEntryChuumonUke.html' + para;
-					first = false;
-				} else if (i == 3) {
-					url = './JohoEntryKenshuuIrai.html' + para;
-					first = false;
-				} else if (i == 4) {
-					url = './JohoEntrySeikyuu.html' + para;
-					first = false;
-				} else if (i == 5) {
-					url = './JohoEntryOboegaki.html' + para;
-					first = false;
-				}
-
-			}
-			
-			if (i == 0) {
-				parashorui = parashorui + '&parashorui=mitumori';
-			} else if (i == 1) {
-				parashorui = parashorui + '&parashorui=chuumon';
-			} else if (i == 2) {
-				parashorui = parashorui + '&parashorui=ukesho';
-			} else if (i == 3) {
-				parashorui = parashorui + '&parashorui=kenshuu';
-			} else if (i == 4) {
-				parashorui = parashorui + '&parashorui=seikyuu';
-			} else if (i == 5) {
-				parashorui = parashorui + '&parashorui=oboegaki';
-			}
-		}
-	}
+	
 	window.location.href = ("/ShoruiEntry" + "?para=edit");
 }
 			document.getElementById("joho1").style.display = "none";
