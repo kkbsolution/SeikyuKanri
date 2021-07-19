@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 //
 @Controller
-public class MyContoroller {
+public class MyController {
 	//接続時にログイン画面を表示させる
 	@RequestMapping("/")
 	public ModelAndView index(ModelAndView mv) {
