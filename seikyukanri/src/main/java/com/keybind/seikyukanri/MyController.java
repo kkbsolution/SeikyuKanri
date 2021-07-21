@@ -5,9 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 //
 @Controller
 public class MyController {
+	
 	//接続時にログイン画面を表示させる
 	@RequestMapping("/")
 	public ModelAndView index(ModelAndView mv) {
@@ -156,10 +158,10 @@ public class MyController {
 		public ModelAndView MasterJoho(ModelAndView mv , @RequestParam(name = "para" , required = false)String para) {
 			if((para).equals("syain")){
 				mv.setViewName("MasterJoho");
-				mv.addObject("title", "マスタ情報");
+				mv.addObject("title", "社員マスタ情報");
 			} else if((para).equals("torihiki")){
 				mv.setViewName("MasterJoho");
-				mv.addObject("title", "マスタ情報");
+				mv.addObject("title", "取引先マスタ情報");
 			}
 			return mv;
 		}
@@ -180,10 +182,10 @@ public class MyController {
 		public ModelAndView MasterJohoTouroku(ModelAndView mv , @RequestParam(name = "para" , required = false)String para) {
 			if((para).equals("syain")){
 				mv.setViewName("MasterJohoTouroku");
-				mv.addObject("title", "マスタ登録");
+				mv.addObject("title", "社員マスタ登録");
 			} else if((para).equals("torihiki")){
 				mv.setViewName("MasterJohoTouroku");
-				mv.addObject("title", "マスタ登録");
+				mv.addObject("title", "取引先マスタ登録");
 			}
 			return mv;
 		}

@@ -9,14 +9,14 @@
 	
     <h1 th:text="${title}" style="text-align: center"></h1>
     <div th:if="${para == syain}"style="text-align: center" class="inputitem-area-mas" id="syaintou">
+        <label for="keitai">社員番号</label>
+        <input type="text" id="shain-no"><br>
         <label for="name">社員名　</label>
         <input type="text" id="name"><br>
         <label for="yakusyoku">役職　　</label>
         <input type="text" id="yakusyoku"><br>
         <label for="s-busyo">所属部署</label>
         <input type="text" id="s-busyo"><br>
-        <label for="keitai">雇用形態</label>
-        <input type="text" id="keitai"><br>
     </div>
     
     <div th:if="${para == torihiki}" style="text-align: center" class="inputitem-area-mas" id="torihikitou">

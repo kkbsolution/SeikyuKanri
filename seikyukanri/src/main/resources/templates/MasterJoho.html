@@ -7,7 +7,7 @@
 </head>
 <body>
 
-    <h1 style="text-align: center">マスタ情報</h1>
+    <h1 style="text-align: center" th:text="${title}"></h1>
     <div id="syain" style="text-align: center">
         <table class="hyoji-area" border="1">
             <tr>
@@ -16,14 +16,12 @@
                 <th>社員名</th>
                 <th>役職</th>
                 <th>所属部署</th>
-                <th>雇用形態</th>
                 <td>更新</td>
             </tr>
             <div id="Master-area">
                 <tr>
                     <td><input type="checkbox" name="mas"></td>
                     <td><input type="text" id="up1" value="209901"></td>
-                    <td><input type="text" value="dummy"></td>
                     <td><input type="text" value="dummy"></td>
                     <td><input type="text" value="dummy"></td>
                     <td><input type="text" value="dummy"></td>
@@ -35,13 +33,11 @@
                     <td><input type="text" value="dummy"></td>
                     <td><input type="text" value="dummy"></td>
                     <td><input type="text" value="dummy"></td>
-                    <td><input type="text" value="dummy"></td>
                     <td><input type="button" onclick="update()" value="更新"></td>
                 </tr>
                 <tr>
                     <td><input type="checkbox"></td>
                     <td><input type="text" id="up3" value="209903"></td>
-                    <td><input type="text" value="dummy"></td>
                     <td><input type="text" value="dummy"></td>
                     <td><input type="text" value="dummy"></td>
                     <td><input type="text" value="dummy"></td>
@@ -53,13 +49,11 @@
                     <td><input type="text" value="dummy"></td>
                     <td><input type="text" value="dummy"></td>
                     <td><input type="text" value="dummy"></td>
-                    <td><input type="text" value="dummy"></td>
                     <td><input type="button" onclick="update()" value="更新"></td>
                 </tr>
                 <tr>
                     <td><input type="checkbox"></td>
                     <td><input type="text" id="up5" value="209905"></td>
-                    <td><input type="text" value="dummy"></td>
                     <td><input type="text" value="dummy"></td>
                     <td><input type="text" value="dummy"></td>
                     <td><input type="text" value="dummy"></td>
