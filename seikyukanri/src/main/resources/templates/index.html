@@ -17,6 +17,14 @@
 		<div class="button-area">
 			<input type="submit" class="loginbutton" value="ログイン">
 		</div>
+		
+		<table th:if="${list.size() > 0}">
+        <tr><th>社員番号</th><th>名前</th></tr>
+        <tr th:each="e : ${list}">
+         <td th:text="${e.shain_no}"></td>
+         <td th:text="${e.shain_name}"></td>
+        </tr>
+        </table>
 	</form>
 </body>
 </html>
