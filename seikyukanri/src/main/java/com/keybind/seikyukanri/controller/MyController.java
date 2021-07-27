@@ -1,20 +1,35 @@
-package com.keybind.seikyukanri;
+package com.keybind.seikyukanri.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.keybind.seikyukanri.entity.Shainmaster;
+import com.keybind.seikyukanri.repository.Shainrepository;
+
 //
 @Controller
 public class MyController {
+	@Autowired Shainrepository shainmaster;
 	
 	//接続時にログイン画面を表示させる
 	@RequestMapping("/")
 	public ModelAndView index(ModelAndView mv) {
+		List<Shainmaster> list = shainmaster.findAll();
+		mv.addObject("list", list);
 		mv.addObject("title","ログイン");
 		mv.setViewName("index");
+		return mv;
+	}
+	@RequestMapping("/Password")
+	public ModelAndView Passowrd(ModelAndView mv) {
+		mv.addObject("title","パスワード変更");
+		mv.setViewName("Password");
 		return mv;
 	}
 	//メインメニューを表示させる
