@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.keybind.seikyukanri.entity.Shainmaster;
-import com.keybind.seikyukanri.repository.Shainrepository;
+import com.keybind.seikyukanri.repository.Shainmasterrepository;
 
 //
 @Controller
 public class MyController {
-	@Autowired Shainrepository shainmaster;
+	@Autowired Shainmasterrepository shainmaster;
 	
 	//接続時にログイン画面を表示させる
 	@RequestMapping("/")
