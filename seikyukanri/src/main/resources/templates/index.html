@@ -13,15 +13,9 @@
 			<input type="text" id="mailaddress"><br>
 			<label for="mailaddress">パスワード　　</label>
 			<input type="password"><br>
-			<a th:href="@{/Password}" th:text="パスワード変更はこちら"></a>
 		</div>
-		<table th:if="${list.size() > 0}">
-		<tr><th>社員番号</th><th>名前</th></tr>
-		<tr th:each="e : ${list}">
-		 <td th:text="${e.shain_no}"></td>
-		 <td th:text="${e.shain_name}"></td>
+		<tr th:each="r:${list}">
 		</tr>
-		</table>
 		<div class="button-area">
 			<input type="submit" class="loginbutton" value="ログイン">
 		</div>
